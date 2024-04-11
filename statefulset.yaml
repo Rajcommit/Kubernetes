@@ -1,0 +1,162 @@
+Name:               elasticsearch-master
+Namespace:          default
+CreationTimestamp:  Wed, 20 Oct 2021 18:10:12 +0000
+Selector:           app=elasticsearch-master
+Labels:             app=elasticsearch-master
+                    app.kubernetes.io/managed-by=Helm
+                    chart=elasticsearch
+                    heritage=Helm
+                    release=saviynt
+Annotations:        esMajorVersion: 6
+                    meta.helm.sh/release-name: saviynt
+                    meta.helm.sh/release-namespace: default
+Replicas:           2 desired | 2 total
+Update Strategy:    RollingUpdate
+Pods Status:        1 Running / 1 Waiting / 0 Succeeded / 0 Failed
+Pod Template:
+  Labels:       app=elasticsearch-master
+                chart=elasticsearch
+                release=saviynt
+  Annotations:  configchecksum: 01c65ce98d6f2adc8fc6dd8731e43fe754a5b4841bcbee11bfea30f2bbc33ab
+                kubectl.kubernetes.io/restartedAt: 2023-07-12T16:34:14-04:00
+  Init Containers:
+   configure-sysctl:
+    Image:      661222050851.dkr.ecr.us-east-1.amazonaws.com/saviynt-elastic:s3-repo-6.8
+    Port:       <none>
+    Host Port:  <none>
+    Command:
+      sysctl
+      -w
+      vm.max_map_count=262144
+    Environment:  <none>
+    Mounts:       <none>
+   keystore:
+    Image:      661222050851.dkr.ecr.us-east-1.amazonaws.com/saviynt-elastic:s3-repo-6.8
+    Port:       <none>
+    Host Port:  <none>
+    Command:
+      sh
+      -c
+      #!/usr/bin/env bash
+      set -euo pipefail
+      
+      elasticsearch-keystore create
+      
+      for i in /tmp/keystoreSecrets/*/*; do
+        key=$(basename $i)
+        echo "Adding file $i to keystore key $key"
+        elasticsearch-keystore add-file "$key" "$i"
+      done
+      
+      # Add the bootstrap password since otherwise the Elasticsearch entrypoint tries to do this on startup
+      if [ ! -z ${ELASTIC_PASSWORD+x} ]; then
+        echo 'Adding env $ELASTIC_PASSWORD to keystore as key bootstrap.password'
+        echo "$ELASTIC_PASSWORD" | elasticsearch-keystore add -x bootstrap.password
+      fi
+      
+      cp -a /usr/share/elasticsearch/config/elasticsearch.keystore /tmp/keystore/
+      
+    Environment:  <none>
+    Mounts:
+      /tmp/keystore from keystore (rw)
+      /tmp/keystoreSecrets/elastic-s3-snapshot-repo-aws-creds from keystore-elastic-s3-snapshot-repo-aws-creds (rw)
+  Containers:
+   elasticsearch:
+    Image:       661222050851.dkr.ecr.us-east-1.amazonaws.com/saviynt-elastic:s3-repo-6.8
+    Ports:       9200/TCP, 9300/TCP
+    Host Ports:  0/TCP, 0/TCP
+    Limits:
+      cpu:     1
+      memory:  3Gi
+    Requests:
+      cpu:      1
+      memory:   3Gi
+    Readiness:  exec [sh -c #!/usr/bin/env bash -e
+# If the node is starting up wait for the cluster to be ready (request params: "wait_for_status=green&timeout=1s" )
+# Once it has started only check that the node itself is responding
+START_FILE=/tmp/.es_start_file
+
+# Disable nss cache to avoid filling dentry cache when calling curl
+# This is required with Elasticsearch Docker using nss < 3.52
+export NSS_SDB_USE_CACHE=no
+
+http () {
+  local path="${1}"
+  local args="${2}"
+  set -- -XGET -s
+
+  if [ "$args" != "" ]; then
+    set -- "$@" $args
+  fi
+
+  if [ -n "${ELASTIC_USERNAME}" ] && [ -n "${ELASTIC_PASSWORD}" ]; then
+    set -- "$@" -u "${ELASTIC_USERNAME}:${ELASTIC_PASSWORD}"
+  fi
+
+  curl --output /dev/null -k "$@" "http://127.0.0.1:9200${path}"
+}
+
+if [ -f "${START_FILE}" ]; then
+  echo 'Elasticsearch is already running, lets check the node is healthy'
+  HTTP_CODE=$(http "/" "-w %{http_code}")
+  RC=$?
+  if [[ ${RC} -ne 0 ]]; then
+    echo "curl --output /dev/null -k -XGET -s -w '%{http_code}' \${BASIC_AUTH} http://127.0.0.1:9200/ failed with RC ${RC}"
+    exit ${RC}
+  fi
+  # ready if HTTP code 200, 503 is tolerable if ES version is 6.x
+  if [[ ${HTTP_CODE} == "200" ]]; then
+    exit 0
+  elif [[ ${HTTP_CODE} == "503" && "6" == "6" ]]; then
+    exit 0
+  else
+    echo "curl --output /dev/null -k -XGET -s -w '%{http_code}' \${BASIC_AUTH} http://127.0.0.1:9200/ failed with HTTP code ${HTTP_CODE}"
+    exit 1
+  fi
+
+else
+  echo 'Waiting for elasticsearch cluster to become ready (request params: "wait_for_status=green&timeout=1s" )'
+  if http "/_cluster/health?wait_for_status=green&timeout=1s" "--fail" ; then
+    touch ${START_FILE}
+    exit 0
+  else
+    echo 'Cluster is not yet ready (request params: "wait_for_status=green&timeout=1s" )'
+    exit 1
+  fi
+fi
+] delay=10s timeout=5s period=10s #success=3 #failure=3
+    Environment:
+      node.name:                            (v1:metadata.name)
+      discovery.zen.minimum_master_nodes:  2
+      discovery.zen.ping.unicast.hosts:    elasticsearch-master-headless
+      cluster.name:                        elasticsearch
+      network.host:                        0.0.0.0
+      ES_JAVA_OPTS:                        -Xmx2g -Xms2g
+      node.data:                           true
+      node.ingest:                         true
+      node.master:                         true
+    Mounts:
+      /usr/share/elasticsearch/config/elasticsearch.keystore from keystore (rw,path="elasticsearch.keystore")
+      /usr/share/elasticsearch/config/log4j2.properties from esconfig (rw,path="log4j2.properties")
+      /usr/share/elasticsearch/data from elasticsearch-master (rw)
+  Volumes:
+   esconfig:
+    Type:      ConfigMap (a volume populated by a ConfigMap)
+    Name:      elasticsearch-master-config
+    Optional:  false
+   keystore:
+    Type:       EmptyDir (a temporary directory that shares a pod's lifetime)
+    Medium:     
+    SizeLimit:  <unset>
+   keystore-elastic-s3-snapshot-repo-aws-creds:
+    Type:        Secret (a volume populated by a Secret)
+    SecretName:  elastic-s3-snapshot-repo-aws-creds
+    Optional:    false
+Volume Claims:
+  Name:          elasticsearch-master
+  StorageClass:  encrypted-gp2
+  Labels:        <none>
+  Annotations:   <none>
+  Capacity:      200Gi
+  Access Modes:  [ReadWriteOnce]
+Events:          <none>

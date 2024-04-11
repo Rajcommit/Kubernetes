@@ -1,0 +1,92 @@
+{{ if .Values.mysql.enabled }}
+
+{{ if .Values.mysql.backup.enabled }}
+
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: efs-mysql-backup
+  annotations:
+    volume.beta.kubernetes.io/storage-class: "aws-efs"
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 1Mi
+---
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: mysql-backup
+spec:
+  schedule: "0 12 * * *"
+  successfulJobsHistoryLimit: 1
+  failedJobsHistoryLimit: 1
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          {{- with .Values.imagePullSecrets }}
+          imagePullSecrets:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}         
+          volumes:
+            - name: mysql-backup
+              configMap:
+                name: mysql-backup
+            - name: efs-mysql-backup
+              persistentVolumeClaim:
+                  claimName: efs-mysql-backup
+          containers:
+          - name: mysql-backup
+            image: ubuntu
+            imagePullPolicy: IfNotPresent
+            env:
+            - name: MYSQL_HOSTNAME
+              value: {{ .Values.mysql.host }}
+            - name: MYSQL_USERNAME
+              value: {{ .Values.mysql.user }}
+            - name: MYSQL_SCHEMA
+              value: {{ .Values.mysql.db.name }}
+            - name:  MYSQL_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: saviynt-mysql
+                  key: mysql-root-password
+            - name:  MYSQL_BACKUP_S3ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: saviynt-mysql-backup-s3secret
+                  key: mysql-backup-s3access-key
+            - name:  MYSQL_BACKUP_S3SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: saviynt-mysql-backup-s3secret
+                  key: mysql-backup-s3secret-key
+            - name: MYSQL_BACKUP_RETENTION_PERIOD
+              value: {{ .Values.mysql.backup.retention_period | quote }}
+            - name: K8S_CLUSTER_NAME
+              value: {{ .Values.cluster_name }}
+            volumeMounts:
+              - mountPath: /mysql-backup
+                name: mysql-backup
+              - name: efs-mysql-backup
+                mountPath: /opt
+            command:
+            - /bin/sh
+            - -c
+            - |
+              apt-get update
+              apt-get install mysql-client -y
+              apt-get install python3-pip -y
+              apt-get install zip -y
+              pip -q install awscli
+              df -h
+              /bin/bash /mysql-backup/mysql-backup.sh
+              ls -lrth /opt/mysql_backups
+          restartPolicy: OnFailure
+
+{{- end }}
+
+{{- end }}

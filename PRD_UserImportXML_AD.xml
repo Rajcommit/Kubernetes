@@ -1,0 +1,54 @@
+<dataMapping>
+	<before-import> </before-import>
+	<sql-query description="This is the Source DB Query" uniquecolumnsascommaseparated="username"> <![CDATA[
+select
+			   u.username         as username
+			 , a.customproperty23 as landline
+			 , a.customproperty26 as mobile			 
+	from
+			   users as u
+			   inner join
+						  user_accounts as ua
+						  on
+									 u.userkey=ua.userkey
+			   inner join
+						  accounts as a
+						  on
+									 ua.accountkey=a.accountkey
+			   inner join
+						  endpoints as e
+						  on
+									 a.endpointkey=e.endpointkey
+	where
+			   e.endpointname='AD'
+			   and a.status in ('1'
+							  ,'Manually Provisioned'
+							  ,'Active')
+			   and a.name is not null 
+			   and a.customproperty19 in ('I'
+								   ,'E')
+               and u.statuskey in (1,'Active')
+			   and u.customproperty46 = 'SAPHR'
+			   and (
+					 ((a.customproperty26 != u.customproperty22  or u.customproperty22 is null ) and a.customproperty26 is not null)  
+					 or ( u.customproperty22 is not null and a.customproperty26 is  null)
+					 or  ( (a.customproperty23 != u.customproperty20  or u.customproperty20 is null ) and a.customproperty23 is not null) 
+					 or ( u.customproperty20 is not null  and a.customproperty23 is null))
+	;
+
+]]></sql-query>
+	<importsettings>
+		<zeroDayProvisioning>false</zeroDayProvisioning>
+		<userNotInFileAction>NOACTION</userNotInFileAction>
+		<checkRules>true</checkRules>
+		<buildUserMap>false</buildUserMap>
+		<generateSystemUsername>false</generateSystemUsername>
+		<userOperationsAllowed>UPDATE</userOperationsAllowed>
+	</importsettings>
+	<mapper description="This is the mapping field for Saviynt Field name"  addOnlyMode="FALSE" ifusernotexists="noaction" incrementalcolumn="updatedate">
+		<mapfield saviyntproperty="username" sourceproperty="username" type="character"></mapfield>
+		<mapfield saviyntproperty="customproperty20" sourceproperty="landline" type="character"></mapfield>
+		<mapfield saviyntproperty="customproperty22" sourceproperty="mobile" type="character"></mapfield>
+	</mapper>
+	<after-import description="EMAIL,BATCH,SQL"> </after-import>
+</dataMapping>

@@ -1,0 +1,219 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  annotations:
+    checksum/configuration: 1299ccd0d3195c65c65b60f42383e8a1ce1aa9c97ba8d28f6ecf3a870eb257bf
+    kubernetes.io/psp: eks.privileged
+  creationTimestamp: "2023-10-23T10:33:34Z"
+  generateName: saviynt-mysql-
+  labels:
+    app.kubernetes.io/component: primary
+    app.kubernetes.io/instance: saviynt
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: mysql
+    controller-revision-hash: saviynt-mysql-f9fb5cd9c
+    helm.sh/chart: mysql-9.10.5
+    statefulset.kubernetes.io/pod-name: saviynt-mysql-0
+  name: saviynt-mysql-0
+  namespace: default
+  ownerReferences:
+  - apiVersion: apps/v1
+    blockOwnerDeletion: true
+    controller: true
+    kind: StatefulSet
+    name: saviynt-mysql
+    uid: 2dc8304b-a11d-4b0c-8f72-ef244c6a5192
+  resourceVersion: "173010515"
+  uid: ecea5387-ec88-4f2d-95bc-8c3416123007
+spec:
+  affinity:
+    podAntiAffinity:
+      preferredDuringSchedulingIgnoredDuringExecution:
+      - podAffinityTerm:
+          labelSelector:
+            matchLabels:
+              app.kubernetes.io/instance: saviynt
+              app.kubernetes.io/name: mysql
+          namespaces:
+          - default
+          topologyKey: kubernetes.io/hostname
+        weight: 1
+  containers:
+  - env:
+    - name: BITNAMI_DEBUG
+      value: "false"
+    - name: MYSQL_ROOT_PASSWORD
+      valueFrom:
+        secretKeyRef:
+          key: mysql-root-password
+          name: saviynt-mysql
+    - name: MYSQL_DATABASE
+      value: v6b
+    image: docker.io/bitnami/mysql:8.0.33-debian-11-r28
+    imagePullPolicy: IfNotPresent
+    livenessProbe:
+      exec:
+        command:
+        - /bin/bash
+        - -ec
+        - |
+          password_aux="${MYSQL_ROOT_PASSWORD:-}"
+          if [[ -f "${MYSQL_ROOT_PASSWORD_FILE:-}" ]]; then
+              password_aux=$(cat "$MYSQL_ROOT_PASSWORD_FILE")
+          fi
+          mysqladmin status -uroot -p"${password_aux}"
+      failureThreshold: 3
+      initialDelaySeconds: 5
+      periodSeconds: 10
+      successThreshold: 1
+      timeoutSeconds: 1
+    name: mysql
+    ports:
+    - containerPort: 3306
+      name: mysql
+      protocol: TCP
+    readinessProbe:
+      exec:
+        command:
+        - /bin/bash
+        - -ec
+        - |
+          password_aux="${MYSQL_ROOT_PASSWORD:-}"
+          if [[ -f "${MYSQL_ROOT_PASSWORD_FILE:-}" ]]; then
+              password_aux=$(cat "$MYSQL_ROOT_PASSWORD_FILE")
+          fi
+          mysqladmin status -uroot -p"${password_aux}"
+      failureThreshold: 3
+      initialDelaySeconds: 5
+      periodSeconds: 10
+      successThreshold: 1
+      timeoutSeconds: 1
+    resources:
+      limits:
+        cpu: 750m
+        memory: 1000Mi
+      requests:
+        cpu: 250m
+        memory: 256Mi
+    securityContext:
+      runAsNonRoot: true
+      runAsUser: 1001
+    startupProbe:
+      exec:
+        command:
+        - /bin/bash
+        - -ec
+        - |
+          password_aux="${MYSQL_ROOT_PASSWORD:-}"
+          if [[ -f "${MYSQL_ROOT_PASSWORD_FILE:-}" ]]; then
+              password_aux=$(cat "$MYSQL_ROOT_PASSWORD_FILE")
+          fi
+          mysqladmin status -uroot -p"${password_aux}"
+      failureThreshold: 10
+      initialDelaySeconds: 15
+      periodSeconds: 10
+      successThreshold: 1
+      timeoutSeconds: 1
+    terminationMessagePath: /dev/termination-log
+    terminationMessagePolicy: File
+    volumeMounts:
+    - mountPath: /bitnami/mysql
+      name: data
+    - mountPath: /opt/bitnami/mysql/conf/my.cnf
+      name: config
+      subPath: my.cnf
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: kube-api-access-46mxt
+      readOnly: true
+  dnsPolicy: ClusterFirst
+  enableServiceLinks: true
+  hostname: saviynt-mysql-0
+  nodeName: ip-100-68-88-119.ec2.internal
+  preemptionPolicy: PreemptLowerPriority
+  priority: 0
+  restartPolicy: Always
+  schedulerName: default-scheduler
+  securityContext:
+    fsGroup: 1001
+  serviceAccount: saviynt-mysql
+  serviceAccountName: saviynt-mysql
+  subdomain: saviynt-mysql
+  terminationGracePeriodSeconds: 30
+  tolerations:
+  - effect: NoExecute
+    key: node.kubernetes.io/not-ready
+    operator: Exists
+    tolerationSeconds: 300
+  - effect: NoExecute
+    key: node.kubernetes.io/unreachable
+    operator: Exists
+    tolerationSeconds: 300
+  volumes:
+  - name: data
+    persistentVolumeClaim:
+      claimName: data-saviynt-mysql-0
+  - configMap:
+      defaultMode: 420
+      name: saviynt-mysql
+    name: config
+  - name: kube-api-access-46mxt
+    projected:
+      defaultMode: 420
+      sources:
+      - serviceAccountToken:
+          expirationSeconds: 3607
+          path: token
+      - configMap:
+          items:
+          - key: ca.crt
+            path: ca.crt
+          name: kube-root-ca.crt
+      - downwardAPI:
+          items:
+          - fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+            path: namespace
+status:
+  conditions:
+  - lastProbeTime: null
+    lastTransitionTime: "2023-10-23T10:33:34Z"
+    status: "True"
+    type: Initialized
+  - lastProbeTime: null
+    lastTransitionTime: "2023-10-23T12:28:10Z"
+    status: "True"
+    type: Ready
+  - lastProbeTime: null
+    lastTransitionTime: "2023-10-23T12:28:10Z"
+    status: "True"
+    type: ContainersReady
+  - lastProbeTime: null
+    lastTransitionTime: "2023-10-23T10:33:34Z"
+    status: "True"
+    type: PodScheduled
+  containerStatuses:
+  - containerID: docker://31c6b26ad91e23fc73b567f9eaa0f5358c8c7b0ead9ebfe410ea9433113897e0
+    image: bitnami/mysql:8.0.33-debian-11-r28
+    imageID: docker-pullable://bitnami/mysql@sha256:0b29169bb44bb9f64b30d48e65c4c06fd9439cbb488b24d5e39da2a8304f2abe
+    lastState:
+      terminated:
+        containerID: docker://c0566d0edeca491fb7dd8e3046a14f6989ded02d2cbe347796aacb776432b592
+        exitCode: 0
+        finishedAt: "2023-10-23T12:20:54Z"
+        reason: Completed
+        startedAt: "2023-10-23T12:17:57Z"
+    name: mysql
+    ready: true
+    restartCount: 11
+    started: true
+    state:
+      running:
+        startedAt: "2023-10-23T12:26:11Z"
+  hostIP: 100.68.88.119
+  phase: Running
+  podIP: 100.68.88.32
+  podIPs:
+  - ip: 100.68.88.32
+  qosClass: Burstable
+  startTime: "2023-10-23T10:33:34Z"
