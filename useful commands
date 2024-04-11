@@ -1,0 +1,295 @@
+kubectl config use-context arn:aws:eks:us-east-2:854587915883:cluster/saviynt-test-eks
+kubectl scale --replicas=0 deployment --all -n cloudnatix
+
+default_key: S@v!ynt_s@V!YNt_
+
+Saviynt@123
+
+feb- dkxfpUPCi14IH5
+mar- NA01XtpDdHO2F3
+
+ kubectl  config current-context
+
+/home/cloudshell-user/.kube/config
+
+kubectl config use-context arn:aws:eks:us-east-2:854587915883:cluster/saviynt-test-eks
+
+
+kubectl config use-context arn:aws:eks:us-east-2:854587915883:cluster/saviynt-test-eks
+
+
+
+curl -k -X POST -u "systemadmin:SaviyntMyOffice1@" https://timetoact-partner.saviyntcloud.com/ECM/login/auth 
+
+
+kubectl get pods ecm-6bc796c867-qs6gn -o jsonpath='{.spec.containers[*].name}'
+
+cat raj.csr | base64
+
+curl -L https://accessgroup-dev.saviyntcloud.com 
+openssl x509 -in ca.crt -text -noout
+
+
+ecm-7fd5cf987d-swssh 
+
+kubectl delete pod  $(kubectl get pods |  grep ContainerCreating   | awk '{print $1}' )   --grace-period=0 --force
+
+kub
+
+kubectl config view --minify --flatten
+
+
+ kubectl get po --selector app.kubernetes.io/name=ecm-worker
+
+
+pmi-nonprod-eks
+
+
+kubectl get events --sort-by=.metadata.creationTimestamp
+
+kubectl get events --sort-by='.type,.lastTimestamp' --all-namespaces
+
+kubectl exec -it $(kubectl get pods -o name | grep ecm-*) -- /bin/bash
+
+aws ec2 describe-instances --filters "Name=private-dns-name,Values=ip-10-0-0-233.eu-west-1.compute.internal" --query "Reservations[*].Instances[*].InstanceId" --output text
+
+aws ssm start-session --target i-0402342cc76e101d0
+
+kubectl get events -l pod-name=<pod_name>:
+
+aws ec2 get-launch-template-data --launch-template-name eks-12c26077-88d8-5546-aaab-a4688e8b1a04 --debug
+
+aws route53 list-resource-record-sets --hosted-zone-id Z2SPJDRIGK6H1R | jq '.ResourceRecordSets[] | select(.Name == "ssm-devtest-mercyhealth.saviyntcloud.com.")'
+
+
+aws route53 change-resource-record-sets --hosted-zone-id Z2SPJDRIGK6H1R --change-batch '{"Changes":[{"Action":"CREATE","ResourceRecordSet":{"Name":"example.com.","Type":"A","TTL":300,"ResourceRecords":[{"Value":"192.0.2.1"}]}}]}'
+
+
+k8dash-shell-preprod-migrate.saviyntcloud.com
+
+
+
+bainandco.saviyntcloud.com.cdn.cloudflare.net
+
+
+
+aws ec2 get-launch-template-data --instance-id i-0e45eeb87bd4a70d6
+
+
+
+1. reset)systemadmin/SaviyntMyOffice1@
+2. {"username":"systemadmin","password":"SaviyntMyOffice1@"}
+
+kubectl delete pod --all --force
+
+ aws eks --region us-west-2 update-kubeconfig --name  saviynt-test-eks
+
+ aws eks --region us-east-2 update-kubeconfig --name  vhi-preprod-migrate-eks
+
+/home/cloudshell-user/.kube/config
+
+kubectl config use-context arn:aws:eks:us-east-2:854587915883:cluster/saviynt-test-eks
+
+
+ aws eks --region eu-west-1 update-kubeconfig --name   ibm-prod-ekscluster
+
+aws eks update-nodegroup-config --cluster-name your-cluster-name --nodegroup-name your-nodegroup-name --scaling-config minSize=1,maxSize=1,desiredSize=1
+
+
+ aws eks --region us-east-1 update-kubeconfig --name jci-dev-migrate-eks
+
+
+ aws eks --region us-east-1 update-kubeconfig --name shell-preprodmigrate-eks
+
+
+
+aws eks --region us-east-1 update-kubeconfig --name field-engineering-eks
+
+aws eks --region us-east-1 update-kubeconfig --name shell-preprod-eks
+
+
+aws eks --region us-east-1 update-kubeconfig --name  field-engineering-eks 
+
+
+ aws eks --region eu-central-1 update-kubeconfig --name  gls-prod-mig-eks
+
+
+ aws eks --region us-east-1 update-kubeconfig --name  spx-field-engineering-eks
+
+
+
+aws eks --region us-east-1 update-kubeconfig --name  ipg-partner-eks
+
+  aws eks --region us-east-1 update-kubeconfig --name pmi-nonprod-support-eks
+
+
+ aws eks --region us-east-1 update-kubeconfig --name testathon-qa-eks
+
+
+fortuna-partner-eks
+
+
+aws eks --region us-east-1 update-kubeconfig --name nomura-dev-eks
+
+
+aws eks --region us-east-1 update-kubeconfig --name  timetoact-partner-support-eks
+
+aws eks --region us-east-1 update-kubeconfig --name    saviyntiga-prod-eks
+
+aws eks --region ap-southeast-2 update-kubeconfig --name        cnrailways-qa-migrate
+
+
+
+aws eks --region  us-east-1 update-kubeconfig --name         wdsandisk-prod-migrate-eks
+
+aws eks --region ap-southeast-2 update-kubeconfig --name         testathon-qa-eks
+\
+
+dkxfpUPCi14IH5
+dkxfpUPCi14IH5
+
+  kubectl get pod | grep Evicted | awk '{print $1}' | xargs kubectl delete pod
+
+kubectl get pods --all-namespaces | grep Evicted | awk '{print $2 " --namespace=" $1}' | xargs kubectl delete pod
+12pm -1pm
+Pericoronitis
+
+
+kubectl exec saviynt-rabbitmq-0 -- rabbitmqctl add_user user not4password
+kubectl exec saviynt-rabbitmq-0 -- rabbitmqctl set_permissions -p / user ".*" ".*" ".*"
+kubectl exec saviynt-rabbitmq-0 -- rabbitmqctl set_user_tags user administrator
+
+
+kubectl scale --replicas=0 deployment --all -n prometheus
+
+
+
+
+knowledgeb4 apss:  Saviynt@2023
+
+
+SaviyntMyOffice1@
+
+
+
+
+rds -d
+rds param grp -d
+rds subnet grp -d
+all instances -d
+launch configs -d
+ASG np
+EKS -np
+Redis - d
+redis subnet grp -d
+EFS -d
+ELB -d
+target grps -d
+IAM role and policy -d
+Iam profile name -d
+es iam user -d
+s3 bucket -d
+kms and alias -d
+all sgs -d
+
+
+
+With some of the recent escalations on new tenant provisioning, I want to make sure we are aware of the below requirements
+New Tenants:
+Every New customer tenant’s 1st environment is expected to be on the latest version
+The subsequent environments of the customers should be in the same version as the lower environment provisioned
+Upgrade Tenants:
+All upgrade tenants should be provisioned on the version request in the request sent to us
+As soon as the upgrade environment DB cloning is complete, the unused DB endpoint has to be deleted
+Make sure to Mark "Amit Singh" in all the emails send for upgrade tenant provisioned
+Cloned Environments:
+All cloned environments should be on same version of the clone
+The cloned DB names should avoid names like clone, copy, dbclone etc. The naming format should be
+<customername>-<environmentname>-eic-rds,
+<customername>-eic-<environmentname>-rds, <
+customername>-<environmentname>-rds etc.
+Make use of sensible name on the new RDS endpoints as they would turn out to be long term endpoint name for the customer.
+
+
+
+
+
+
+
+
+
+to your account as well
+10:19 AM
+arn:aws:iam::854587915883:mfa/Raj.Abhishek@saviynt.com
+MFQDVENOP4MJAHG5MCPTCOONRCLEB7YH6UH6F2Q4DGDZ3P6UPRY42EXV2DLYP7CC
+Raj.Abhishek@saviynt.com
+t]E6e4|'=V86$O
+https://854587915883.signin.aws.amazon.com/console
+10:19 AM
+thats your new MFA and new password
+
+
+saviynt wifi : Saviynt_123#
+
+
+Jenkins : http://54.91.83.174:8080/
+http://54.91.83.174:8080/
+http://54.91.83.174:8080/
+
+Todo-app-dev
+
+
+
+config :
+
+cd /home/ec2-user/django-todo
+docker build . -t todo-dev
+docker run -d -p 8000:8000 todo-dev
+
+
+918061914444
+
+
+Curl
+curl https://localhost/ECM --insecure
+v6/v2020
+curl https://localhost:8443/ECM --insecure
+
+4563
+
+6205186834
+
+
+@here Find the below steps for log viewer is not working
+1.storage_class: encrypt-gp3 to storage_class: encrypted-gp2 and elasticsearch_observability set to false
+2.enabled back elasticsearch_observability set to true
+3.kubectl get pods -n kube-system
+4.kubectl rollout restart ds fluentd -n kube-system
+
+ 192.168.0.1
+
+
+
+ToDOs: 
+
+1> es-mig
+2> Infra-clean
+3> encryption_etc - ccba
+4> Infra_creation
+5>
+
+
+5aff-0a444c-a2
+
+
+
+Create User 'ssmdau'@'%' Identified By 'ruH82WdK5QgHpq';
+ GRANT ALTER,CREATE,DELETE,DROP,EVENT,INDEX,INSERT,LOCK TABLES,PROCESS,SELECT,TRIGGER,SHOW DATABASES,UPDATE ON *.* TO 'ssmdau'@'%';
+ Flush Privileges;
+
+
+
+
+
+CREATE USER 'usrcjs'@'%' IDENTIFIED BY 'saviynt@2024';
+GRANT SELECT ON your_database_name.* TO 'usrcjs'@'%';
