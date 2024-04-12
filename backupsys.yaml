@@ -1,0 +1,29 @@
+# Please edit the object below. Lines beginning with a '#' will be ignored,
+# and an empty file will abort the edit. If an error occurs while saving this file will be
+# reopened with the relevant failures.
+#
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  annotations:
+    meta.helm.sh/release-name: saviynt
+    meta.helm.sh/release-namespace: default
+    volume.beta.kubernetes.io/storage-class: aws-efs-csi
+  creationTimestamp: "2022-10-24T21:01:56Z"
+  finalizers:
+  - kubernetes.io/pvc-protection
+  labels:
+    app.kubernetes.io/managed-by: Helm
+  name: efs-mysql-backup
+  namespace: default
+  resourceVersion: "4094"
+  uid: 7fbfb1af-5a02-4747-bf25-63a5865213ca
+spec:
+  accessModes:
+  - ReadWriteMany
+  resources:
+    requests:
+      storage: 1Mi
+  volumeMode: Filesystem
+status:
+  phase: Pending
