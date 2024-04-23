@@ -25,7 +25,21 @@ kubectl get nodes -o=custom-columns=NODE:.metadata.name,CPU:.status.capacity.cpu
 kubectl get nodes -o=custom-columns=NODE:.metadata.name,CPU:.status.capacity.cpu,MEMORY:$(kubectl get nodes -o=jsonpath='{range .items[*]}{.metadata.name}{" "}{.status.capacity.memory}{"\n"}{end}' | awk '{print $1, $2/1024^3}' | column -t)
 
 
+Here's what each part does:
 
+    kubectl get nodes: This retrieves information about all nodes in your Kubernetes cluster.
+
+    -o=custom-columns=NODE:.metadata.name,CPU:.status.capacity.cpu,MEMORY:...: This specifies custom output columns for the command. It defines columns for the node name (NODE), CPU capacity (CPU), and memory capacity (MEMORY).
+
+    $(...): This is a command substitution that allows you to embed the output of another command into the current command.
+
+    kubectl get nodes -o=jsonpath='{range .items[*]}{.metadata.name}{" "}{.status.capacity.memory}{"\n"}{end}': This command retrieves the memory capacity of each node in the cluster using jsonpath, and formats the output as node_name memory_capacity\n.
+
+    awk '{print $1, $2/1024^3}': This awk command processes the output of the previous kubectl command. It prints the first column (node name) and divides the second column (memory capacity) by 1024^3 to convert the value from bytes to gigabytes.
+
+    column -t: This command formats the output into a tabular format for better readability.
+
+So, overall, the command retrieves information about nodes in the cluster, including their names, CPU capacity, and memory capacity (converted to gigabytes), and presents it in a human-readable format.
 
 
 
