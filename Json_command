@@ -6,3 +6,38 @@ kubectl get po -o jsonpath='{ .items[0].spec.containers[0].status }'
 
 
 kubectl get po -o jsonpath='{ .items[0].spec}'
+
+kubectl get po -o jsonpath='{ .items[0].spec}' | jq
+
+kubectl get po -o jsonpath='{ .items[0].spec.containers[0].status }' | jq
+
+kubectl get po -o jsonpath='{ .items[0].spec.containers[0].describe }' | jq
+
+kubectl get no -o=jasonpath='{.items[*].metadata.name}' | jq
+
+kubectl get no -o=jsonpath='{.items[*].status.nodeInfo.architecture}'
+
+kubectl get no -o=jasonpath='{.items[*].metadata.name} {"\n"} {.items[*].status.capacity.cpu} {"\n"} {.items[*].status.nodeInfo.architecture}'
+
+kubectl get no -o=custom-columns=NODE:.metadata.name ,CPU:.status.capacity.cpu
+kubectl get no -o=custom-columns=NODE:.metadata.name,CPU:.status.capacity.cpu
+kubectl get nodes -o=custom-columns=NODE:.metadata.name,CPU:.status.capacity.cpu,MEMORY:.status.capacity.memory
+kubectl get nodes -o=custom-columns=NODE:.metadata.name,CPU:.status.capacity.cpu,MEMORY:$(kubectl get nodes -o=jsonpath='{range .items[*]}{.metadata.name}{" "}{.status.capacity.memory}{"\n"}{end}' | awk '{print $1, $2/1024^3}' | column -t)
+
+
+
+
+
+
+
+
+
+
+
+crteating RDS using CLI: 
+
+An error occurred (InvalidVPCNetworkStateFault) when calling the RestoreDBInstanceFromDBSnapshot operation: The DB subnet group doesn't meet Availability Zone (AZ) coverage requirement. Current AZ coverage: us-east-1b. Add subnets to cover at least 2 AZs.
+
+Command execution failed: aws rds restore-db-instance-from-db-snapshot --db-instance-identifier perf-uat-support-rds-rename2024-03-05-13-00-25 --db-snapshot-identifier mysql8-perf-test-golden-cleaned-up-copy-2-03-2024 --db-instance-class db.m7g.2xlarge --db-subnet-group-name perf-uat-support-rds-subnetgroup --vpc-security-group-ids sg-0c27c8683062edbf5 --db-parameter-group-name mysql8-perf-uat-support-rds-parametergroup ERROR = Error: Command failed: aws rds restore-db-instance-from-db-snapshot --db-instance-identifier perf-uat-support-rds-rename2024-03-05-13-00-25 --db-snapshot-identifier mysql8-perf-test-golden-cleaned-up-copy-2-03-2024 --db-instance-class db.m7g.2xlarge --db-subnet-group-name perf-uat-support-rds-subnetgroup --vpc-security-group-ids sg-0c27c8683062edbf5 --db-parameter-group-name mysql8-perf-uat-support-rds-parametergroup
+
+An error occurred (InvalidVPCNetworkStateFault) when calling the RestoreDBInstanceFromDBSnapshot operation: The DB subnet group doesn't meet Availability Zone (AZ) coverage requirement. Current AZ coverage: us-east-1b. Add subnets to cover at least 2 AZs.
