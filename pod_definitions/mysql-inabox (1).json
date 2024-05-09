@@ -1,0 +1,282 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "MySQL on self hosted instance",
+  "Parameters": {
+    "BucketName": {
+      "Type": "String",
+      "Description": "Name of the S3 bucket to create"
+    },
+    "UserName": {
+      "Type": "String",
+      "Description": "IAM username for which the custom policy and AmazonS3FullAccess will be applied"
+    },
+    "KeyName": {
+      "Description": "Name of an existing EC2 KeyPair to enable SSH access to the instance",
+      "Type": "AWS::EC2::KeyPair::KeyName"
+    },
+    "VpcId": {
+      "Description": "ID of the VPC where the instance will be launched",
+      "Type": "AWS::EC2::VPC::Id"
+    },
+    "SubnetId": {
+      "Description": "ID of the subnet where the instance will be launched",
+      "Type": "List<AWS::EC2::Subnet::Id>",
+      "ConstraintDescription": "Select a single subnet ID"
+    },
+    "AmiId": {
+      "Description": "ID of the AMI to use for the EC2 instance",
+      "Type": "AWS::EC2::Image::Id"
+    },
+    "InstanceProfileArn": {
+      "Description": "ARN of the IAM instance profile to attach to the EC2 instance",
+      "Type": "String"
+    },
+    "Environment": {
+      "Description": "Environment type (e.g., dev, prod)",
+      "Type": "String"
+    },
+    "Client": {
+      "Description": "Client name",
+      "Type": "String"
+    },
+    "Owner": {
+      "Description": "Owner name",
+      "Type": "String"
+    },
+    "CIDRInput1": {
+      "Description": "Enter the app tier subnet CIDR (e.g., 100.64.10.0/26)",
+      "Type": "String"
+    },
+    "CIDRInput2": {
+      "Description": "Enter the app tier subnet CIDR if you have more than 1 CIDR(optional)",
+      "Type": "String",
+      "Default": ""
+    },
+    "CIDRInput3": {
+      "Description": "Enter the app tier subnet CIDR if you have more than 2 CIDRs(optional)",
+      "Type": "String",
+      "Default": ""
+    },
+    "CIDRInput4": {
+      "Description": "Enter the app tier subnet CIDR if you have more than 3 CIDRs(optional)",
+      "Type": "String",
+      "Default": ""
+    },
+    "DBPassword": {
+      "Type": "String",
+      "NoEcho": true,
+      "Description": "Enter a saviyntadmin password for the RDS"
+    }
+  },
+  "Resources": {
+    "EC2Instance": {
+      "Type": "AWS::EC2::Instance",
+      "Properties": {
+        "InstanceType": "m5.2xlarge",
+        "KeyName": { "Ref": "KeyName" },
+        "ImageId": { "Ref": "AmiId" },
+        "UserData": {
+          "Fn::Base64": {
+            "Fn::Join": [ "", [ 
+              "#!/bin/bash\nmkfs.ext4 /dev/xvdf\nmkdir /data\nmount /dev/xvdf /data\necho '/dev/xvdf /data ext4 defaults 0 0' >> /etc/fstab\n",
+              "mkdir -p /data/mysql/\n",
+              "mkdir -p /data/log/ \n",
+              "mkdir -p /data/mysqld/  \n",
+              "mkdir -p /data/backupscript/\n",
+              "mkdir -p /data/backups/binlogbackup/\n",
+              "mkdir -p /data/tmp/  \n",
+              "mkdir -p /data/log/mysql/\n",
+              "sudo cp -R -p /var/lib/mysql /data/\n",
+              "touch /data/log/mysql/mysql-bin.index\n",
+              "chown -R mysql:mysql /data  \n",
+              "echo -e '", { "Ref": "MyUserAccessKey" }, "\\n", { "Fn::GetAtt": ["MyUserAccessKey", "SecretAccessKey"] }, "' > /data/mykeys\n",
+              "AccessKeyIdVar=", { "Ref": "MyUserAccessKey" }, "\n",
+              "SecretAccessKeyVar=", { "Fn::GetAtt": ["MyUserAccessKey", "SecretAccessKey"] }, "\n",
+              "awsregion=", 	{ "Ref" : "AWS::Region" }, "\n" ,
+              "dbpassword='", { "Ref": "DBPassword" }, "'\n",
+              "s3bucket='", { "Ref": "BucketName" }, "'\n",
+              "encoded_access_key=$(echo -n \"$AccessKeyIdVar\" | base64) \n",
+              "encoded_secret_key=$(echo -n \"$SecretAccessKeyVar\" | base64) \n",
+              "encoded_dbpassword=$(echo -n \"$dbpassword\" | base64) \n",
+              "encoded_s3bucket=$(echo -n \"$s3bucket\" | base64) \n",
+              "sed -i \"s/iam_key/$encoded_access_key/g\" /etc/environment \n",
+              "sed -i \"s/iam_secret/$encoded_secret_key/g\" /etc/environment \n",
+              "sed -i \"s/s3_bucket_name/$encoded_s3bucket/g\" /etc/environment \n",
+              "sed -i \"s/db_password/$encoded_dbpassword/g\" /etc/environment \n",
+              "sed -i \"s/aws_region/$awsregion/g\" /etc/environment \n",
+              " \n"
+              ]
+            ]
+          }
+        },
+        "SecurityGroupIds": [
+          { "Ref": "SSHSecurityGroup" }
+        ],
+        "SubnetId": { "Fn::Select": [ "0", { "Ref": "SubnetId" } ] },
+        "Tags": [
+          { "Key": "Environment", "Value": { "Ref": "Environment" } },
+          { "Key": "Client", "Value": { "Ref": "Client" } },
+          { "Key": "Owner", "Value": { "Ref": "Owner" } },
+          { "Key": "Name", "Value": { "Fn::Sub": "${Client}-${Environment}-mysql-inabox" } }
+        ],
+        "IamInstanceProfile": { "Ref": "InstanceProfileArn" }
+      },
+      "DependsOn": "MyUserAccessKey"
+
+    },
+    "SSHSecurityGroup": {
+      "Type": "AWS::EC2::SecurityGroup",
+      "Properties": {
+        "GroupDescription": "Enable SSH access from IP 192.168.246.137/32",
+        "SecurityGroupIngress": [
+          {
+            "IpProtocol": "tcp",
+            "FromPort": 22,
+            "ToPort": 22,
+            "CidrIp": "192.168.246.137/32"
+          },
+          {
+            "IpProtocol": "tcp",
+            "FromPort": 22,
+            "ToPort": 22,
+            "CidrIp": "192.168.247.14/32"
+          },
+          {
+            "IpProtocol": "tcp",
+            "FromPort": 3306,
+            "ToPort": 3306,
+            "CidrIp": "192.168.247.14/32"
+          },
+          {
+            "IpProtocol": "tcp",
+            "FromPort": 3306,
+            "ToPort": 3306,
+            "CidrIp": "192.168.249.0/24"
+          },
+          {
+            "IpProtocol": "tcp",
+            "FromPort": 3306,
+            "ToPort": 3306,
+            "CidrIp": { "Ref": "CIDRInput1" }
+          },
+          {
+            "Fn::If": [
+              "AddSecondRule",
+              {
+                "IpProtocol": "tcp",
+                "FromPort": 3306,
+                "ToPort": 3306,
+                "CidrIp": { "Ref": "CIDRInput2" }
+              },
+              { "Ref": "AWS::NoValue" }
+            ]
+          },
+          {
+            "Fn::If": [
+              "AddThirdRule",
+              {
+                "IpProtocol": "tcp",
+                "FromPort": 3306,
+                "ToPort": 3306,
+                "CidrIp": { "Ref": "CIDRInput3" }
+              },
+              { "Ref": "AWS::NoValue" }
+            ]
+          },
+          {
+            "Fn::If": [
+              "AddFourthRule",
+              {
+                "IpProtocol": "tcp",
+                "FromPort": 3306,
+                "ToPort": 3306,
+                "CidrIp": { "Ref": "CIDRInput4" }
+              },
+              { "Ref": "AWS::NoValue" }
+            ]
+          }
+        ],
+        "VpcId": { "Ref": "VpcId" },
+        "Tags": [
+          { "Key": "Name", "Value": { "Fn::Sub": "${Client}-${Environment}-mysql-inabox-sg" } }
+        ]
+      }
+    },
+    "MyS3Bucket": {
+      "Type": "AWS::S3::Bucket",
+      "Properties": {
+        "BucketName": { "Ref": "BucketName" }
+      }
+    },
+    "BucketPolicy": {
+      "Type": "AWS::S3::BucketPolicy",
+      "Properties": {
+        "Bucket": { "Ref": "MyS3Bucket" },
+        "PolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Principal": {
+                "AWS": { "Fn::GetAtt": ["MyUser", "Arn"] }
+              },
+              "Action": [
+                "s3:*"
+              ],
+              "Resource": [
+                { "Fn::Join": ["", ["arn:aws:s3:::", { "Ref": "MyS3Bucket" }, "/*"]] },
+                { "Fn::Join": ["", ["arn:aws:s3:::", { "Ref": "MyS3Bucket" }]] }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "MyUser": {
+      "Type": "AWS::IAM::User",
+      "Properties": {
+        "UserName": { "Ref": "UserName" },
+        "Policies": [
+          {
+            "PolicyName": "AmazonS3FullAccessPolicy",
+            "PolicyDocument": {
+              "Version": "2012-10-17",
+              "Statement": [
+                {
+                  "Effect": "Allow",
+                  "Action": ["s3:*",
+                  "s3-object-lambda:*"],
+                  "Resource": "*"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    "MyUserAccessKey": {
+      "Type": "AWS::IAM::AccessKey",
+      "Properties": {
+        "UserName": { "Ref": "UserName" }
+      },"DependsOn": "MyUser"
+    }
+  },
+  "Outputs": {
+    "InstanceId": {
+      "Description": "The ID of the newly created EC2 instance",
+      "Value": { "Ref": "EC2Instance" },
+      "Export": {
+        "Name": { "Fn::Sub": "${AWS::StackName}-InstanceId" }
+      }
+    },
+    "BucketName": {
+      "Description": "Name of the created S3 bucket",
+      "Value": { "Ref": "MyS3Bucket" }
+    }
+  },
+  "Conditions": {
+    "AddSecondRule": { "Fn::Not": [{ "Fn::Equals": [{ "Ref": "CIDRInput2" }, ""] }] },
+    "AddThirdRule": { "Fn::Not": [{ "Fn::Equals": [{ "Ref": "CIDRInput3" }, ""] }] },
+    "AddFourthRule": { "Fn::Not": [{ "Fn::Equals": [{ "Ref": "CIDRInput4" }, ""] }] }
+  }
+}

@@ -1,0 +1,758 @@
+apiVersion: v1
+items:
+- apiVersion: v1
+  kind: PersistentVolume
+  metadata:
+    annotations:
+      kubernetes.io/createdby: aws-ebs-dynamic-provisioner
+      pv.kubernetes.io/bound-by-controller: "yes"
+      pv.kubernetes.io/provisioned-by: kubernetes.io/aws-ebs
+    creationTimestamp: "2021-10-20T18:10:17Z"
+    finalizers:
+    - kubernetes.io/pv-protection
+    labels:
+      failure-domain.beta.kubernetes.io/region: us-east-1
+      failure-domain.beta.kubernetes.io/zone: us-east-1a
+    name: pvc-03943883-188e-42b6-96ca-e00e889b5de9
+    resourceVersion: "239698471"
+    uid: 7beca365-e57f-453a-82db-9dd4d7a8ee25
+  spec:
+    accessModes:
+    - ReadWriteOnce
+    awsElasticBlockStore:
+      fsType: ext4
+      volumeID: aws://us-east-1a/vol-0de307c1afbeae49a
+    capacity:
+      storage: 40Gi
+    claimRef:
+      apiVersion: v1
+      kind: PersistentVolumeClaim
+      name: toolbox
+      namespace: default
+      resourceVersion: "3441"
+      uid: 03943883-188e-42b6-96ca-e00e889b5de9
+    nodeAffinity:
+      required:
+        nodeSelectorTerms:
+        - matchExpressions:
+          - key: failure-domain.beta.kubernetes.io/region
+            operator: In
+            values:
+            - us-east-1
+          - key: failure-domain.beta.kubernetes.io/zone
+            operator: In
+            values:
+            - us-east-1a
+    persistentVolumeReclaimPolicy: Retain
+    storageClassName: encrypted-gp2
+    volumeMode: Filesystem
+  status:
+    phase: Released
+- apiVersion: v1
+  kind: PersistentVolume
+  metadata:
+    annotations:
+      kubernetes.io/createdby: aws-ebs-dynamic-provisioner
+      pv.kubernetes.io/bound-by-controller: "yes"
+      pv.kubernetes.io/provisioned-by: kubernetes.io/aws-ebs
+    creationTimestamp: "2021-10-20T18:10:23Z"
+    finalizers:
+    - kubernetes.io/pv-protection
+    labels:
+      failure-domain.beta.kubernetes.io/region: us-east-1
+      failure-domain.beta.kubernetes.io/zone: us-east-1b
+    name: pvc-07eb487c-6494-4d93-ae5d-64a12648e43e
+    resourceVersion: "249481583"
+    uid: b9b1da9f-6ed6-45a7-9f75-69f21f9bc0c6
+  spec:
+    accessModes:
+    - ReadWriteOnce
+    awsElasticBlockStore:
+      fsType: ext4
+      volumeID: aws://us-east-1b/vol-0d51068a069a0dc6f
+    capacity:
+      storage: 200Gi
+    claimRef:
+      apiVersion: v1
+      kind: PersistentVolumeClaim
+      name: elasticsearch-data-elastic-search-es-default-1
+      namespace: kube-system
+      resourceVersion: "4158"
+      uid: 07eb487c-6494-4d93-ae5d-64a12648e43e
+    nodeAffinity:
+      required:
+        nodeSelectorTerms:
+        - matchExpressions:
+          - key: failure-domain.beta.kubernetes.io/zone
+            operator: In
+            values:
+            - us-east-1b
+          - key: failure-domain.beta.kubernetes.io/region
+            operator: In
+            values:
+            - us-east-1
+    persistentVolumeReclaimPolicy: Retain
+    storageClassName: encrypted-gp2
+    volumeMode: Filesystem
+  status:
+    phase: Released
+- apiVersion: v1
+  kind: PersistentVolume
+  metadata:
+    annotations:
+      kubernetes.io/createdby: aws-ebs-dynamic-provisioner
+      pv.kubernetes.io/bound-by-controller: "yes"
+      pv.kubernetes.io/provisioned-by: kubernetes.io/aws-ebs
+    creationTimestamp: "2023-08-21T12:39:32Z"
+    finalizers:
+    - kubernetes.io/pv-protection
+    labels:
+      topology.kubernetes.io/region: us-east-1
+      topology.kubernetes.io/zone: us-east-1b
+    name: pvc-1c03aa9c-35cd-4a7c-ab10-6d152d9c1e7e
+    resourceVersion: "264095140"
+    uid: 6de79332-64f3-4b0f-ae48-9ab6bf0874f2
+  spec:
+    accessModes:
+    - ReadWriteOnce
+    awsElasticBlockStore:
+      fsType: ext4
+      volumeID: aws://us-east-1b/vol-032e61df8c5870845
+    capacity:
+      storage: 200Gi
+    claimRef:
+      apiVersion: v1
+      kind: PersistentVolumeClaim
+      name: elasticsearch-master-elasticsearch-master-2
+      namespace: default
+      resourceVersion: "264095110"
+      uid: 1c03aa9c-35cd-4a7c-ab10-6d152d9c1e7e
+    nodeAffinity:
+      required:
+        nodeSelectorTerms:
+        - matchExpressions:
+          - key: topology.kubernetes.io/zone
+            operator: In
+            values:
+            - us-east-1b
+          - key: topology.kubernetes.io/region
+            operator: In
+            values:
+            - us-east-1
+    persistentVolumeReclaimPolicy: Retain
+    storageClassName: encrypted-gp2
+    volumeMode: Filesystem
+  status:
+    phase: Bound
+- apiVersion: v1
+  kind: PersistentVolume
+  metadata:
+    annotations:
+      kubernetes.io/createdby: aws-ebs-dynamic-provisioner
+      pv.kubernetes.io/bound-by-controller: "yes"
+      pv.kubernetes.io/provisioned-by: kubernetes.io/aws-ebs
+    creationTimestamp: "2023-07-06T05:26:12Z"
+    finalizers:
+    - kubernetes.io/pv-protection
+    labels:
+      topology.kubernetes.io/region: us-east-1
+      topology.kubernetes.io/zone: us-east-1b
+    name: pvc-1d91b2c3-237f-40fe-a72e-df1516b6617b
+    resourceVersion: "246896813"
+    uid: 8e5cdc70-a47e-40fa-bf87-5d3ad96a2b59
+  spec:
+    accessModes:
+    - ReadWriteOnce
+    awsElasticBlockStore:
+      fsType: ext4
+      volumeID: aws://us-east-1b/vol-02778b3a0883f142a
+    capacity:
+      storage: 8Gi
+    claimRef:
+      apiVersion: v1
+      kind: PersistentVolumeClaim
+      name: data-saviynt-rabbitmq-0
+      namespace: default
+      resourceVersion: "246896760"
+      uid: 1d91b2c3-237f-40fe-a72e-df1516b6617b
+    nodeAffinity:
+      required:
+        nodeSelectorTerms:
+        - matchExpressions:
+          - key: topology.kubernetes.io/zone
+            operator: In
+            values:
+            - us-east-1b
+          - key: topology.kubernetes.io/region
+            operator: In
+            values:
+            - us-east-1
+    persistentVolumeReclaimPolicy: Retain
+    storageClassName: encrypted-gp2
+    volumeMode: Filesystem
+  status:
+    phase: Bound
+- apiVersion: v1
+  kind: PersistentVolume
+  metadata:
+    annotations:
+      pv.beta.kubernetes.io/gid: "40004"
+      pv.kubernetes.io/provisioned-by: example.com/aws-efs
+    creationTimestamp: "2021-10-20T18:10:13Z"
+    finalizers:
+    - kubernetes.io/pv-protection
+    name: pvc-1e4e8fc3-2001-4c67-9ad9-06015df1cebf
+    resourceVersion: "3827"
+    uid: e803756c-a2da-4e58-9566-8aa20f373964
+  spec:
+    accessModes:
+    - ReadWriteMany
+    capacity:
+      storage: 1Mi
+    claimRef:
+      apiVersion: v1
+      kind: PersistentVolumeClaim
+      name: efs-rdpsession
+      namespace: default
+      resourceVersion: "3438"
+      uid: 1e4e8fc3-2001-4c67-9ad9-06015df1cebf
+    mountOptions:
+    - vers=4.1
+    nfs:
+      path: /efs-rdpsession-pvc-1e4e8fc3-2001-4c67-9ad9-06015df1cebf
+      server: fs-0cb93e1124d670fb9.efs.us-east-1.amazonaws.com
+    persistentVolumeReclaimPolicy: Retain
+    storageClassName: aws-efs
+    volumeMode: Filesystem
+  status:
+    phase: Bound
+- apiVersion: v1
+  kind: PersistentVolume
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"v1","kind":"PersistentVolume","metadata":{"annotations":{},"name":"pvc-373f6c03-9fcd-4dff-9926-de38f7774b25"},"spec":{"accessModes":["ReadWriteOnce"],"awsElasticBlockStore":{"fsType":"ext4","volumeID":"aws://us-east-1a/vol-000a455a6bd8878bf"},"capacity":{"storage":"200Gi"},"persistentVolumeReclaimPolicy":"Retain","storageClassName":"encrypted-gp2","volumeMode":"Filesystem"}}
+      kubernetes.io/createdby: aws-ebs-dynamic-provisioner
+      pv.kubernetes.io/bound-by-controller: "yes"
+      pv.kubernetes.io/provisioned-by: kubernetes.io/aws-ebs
+    creationTimestamp: "2021-10-20T18:10:19Z"
+    finalizers:
+    - kubernetes.io/pv-protection
+    labels:
+      failure-domain.beta.kubernetes.io/region: us-east-1
+      failure-domain.beta.kubernetes.io/zone: us-east-1a
+    name: pvc-373f6c03-9fcd-4dff-9926-de38f7774b25
+    resourceVersion: "249365780"
+    uid: 54e28c35-d7c7-4a4c-b778-e7854cd37a30
+  spec:
+    accessModes:
+    - ReadWriteOnce
+    awsElasticBlockStore:
+      fsType: ext4
+      volumeID: aws://us-east-1a/vol-000a455a6bd8878bf
+    capacity:
+      storage: 200Gi
+    claimRef:
+      apiVersion: v1
+      kind: PersistentVolumeClaim
+      name: elasticsearch-master-elasticsearch-master-1
+      namespace: default
+      resourceVersion: "3791"
+      uid: 373f6c03-9fcd-4dff-9926-de38f7774b25
+    nodeAffinity:
+      required:
+        nodeSelectorTerms:
+        - matchExpressions:
+          - key: failure-domain.beta.kubernetes.io/zone
+            operator: In
+            values:
+            - us-east-1a
+          - key: failure-domain.beta.kubernetes.io/region
+            operator: In
+            values:
+            - us-east-1
+    persistentVolumeReclaimPolicy: Retain
+    storageClassName: encrypted-gp2
+    volumeMode: Filesystem
+  status:
+    phase: Bound
+- apiVersion: v1
+  kind: PersistentVolume
+  metadata:
+    annotations:
+      kubernetes.io/createdby: aws-ebs-dynamic-provisioner
+      pv.kubernetes.io/bound-by-controller: "yes"
+      pv.kubernetes.io/provisioned-by: kubernetes.io/aws-ebs
+    creationTimestamp: "2022-03-18T20:30:11Z"
+    finalizers:
+    - kubernetes.io/pv-protection
+    labels:
+      failure-domain.beta.kubernetes.io/region: us-east-1
+      failure-domain.beta.kubernetes.io/zone: us-east-1b
+    name: pvc-390a523e-6cfe-4a1a-88e6-a33b9562afc2
+    resourceVersion: "59672414"
+    uid: 580a6f94-0600-40fd-8aad-cd79c0078fce
+  spec:
+    accessModes:
+    - ReadWriteOnce
+    awsElasticBlockStore:
+      fsType: ext4
+      volumeID: aws://us-east-1b/vol-0f5317c140c70a9ce
+    capacity:
+      storage: 10Gi
+    claimRef:
+      apiVersion: v1
+      kind: PersistentVolumeClaim
+      name: data-vault-0
+      namespace: default
+      resourceVersion: "59672360"
+      uid: 390a523e-6cfe-4a1a-88e6-a33b9562afc2
+    nodeAffinity:
+      required:
+        nodeSelectorTerms:
+        - matchExpressions:
+          - key: failure-domain.beta.kubernetes.io/region
+            operator: In
+            values:
+            - us-east-1
+          - key: failure-domain.beta.kubernetes.io/zone
+            operator: In
+            values:
+            - us-east-1b
+    persistentVolumeReclaimPolicy: Retain
+    storageClassName: encrypted-gp2
+    volumeMode: Filesystem
+  status:
+    phase: Bound
+- apiVersion: v1
+  kind: PersistentVolume
+  metadata:
+    annotations:
+      pv.beta.kubernetes.io/gid: "40006"
+      pv.kubernetes.io/provisioned-by: example.com/aws-efs
+    creationTimestamp: "2023-06-15T22:10:53Z"
+    finalizers:
+    - kubernetes.io/pv-protection
+    name: pvc-4353dcca-baa3-48e7-823a-ff4f07e06c3b
+    resourceVersion: "239697478"
+    uid: 748e41bf-0a9d-487a-832f-49f4d5391eff
+  spec:
+    accessModes:
+    - ReadWriteMany
+    capacity:
+      storage: 1Mi
+    claimRef:
+      apiVersion: v1
+      kind: PersistentVolumeClaim
+      name: efs-mysql-backup
+      namespace: default
+      resourceVersion: "239697472"
+      uid: 4353dcca-baa3-48e7-823a-ff4f07e06c3b
+    mountOptions:
+    - vers=4.1
+    nfs:
+      path: /efs-mysql-backup-pvc-4353dcca-baa3-48e7-823a-ff4f07e06c3b
+      server: fs-0cb93e1124d670fb9.efs.us-east-1.amazonaws.com
+    persistentVolumeReclaimPolicy: Retain
+    storageClassName: aws-efs
+    volumeMode: Filesystem
+  status:
+    phase: Bound
+- apiVersion: v1
+  kind: PersistentVolume
+  metadata:
+    annotations:
+      pv.beta.kubernetes.io/gid: "40000"
+      pv.kubernetes.io/provisioned-by: example.com/aws-efs
+    creationTimestamp: "2021-10-20T18:10:12Z"
+    finalizers:
+    - kubernetes.io/pv-protection
+    name: pvc-45684147-5b62-46bc-a0f9-3545a8815229
+    resourceVersion: "3578"
+    uid: 9cb0cc4d-0710-44e6-9f32-b5ae01860c57
+  spec:
+    accessModes:
+    - ReadWriteMany
+    capacity:
+      storage: 1Mi
+    claimRef:
+      apiVersion: v1
+      kind: PersistentVolumeClaim
+      name: efs-wetty
+      namespace: default
+      resourceVersion: "3433"
+      uid: 45684147-5b62-46bc-a0f9-3545a8815229
+    mountOptions:
+    - vers=4.1
+    nfs:
+      path: /efs-wetty-pvc-45684147-5b62-46bc-a0f9-3545a8815229
+      server: fs-0cb93e1124d670fb9.efs.us-east-1.amazonaws.com
+    persistentVolumeReclaimPolicy: Retain
+    storageClassName: aws-efs
+    volumeMode: Filesystem
+  status:
+    phase: Bound
+- apiVersion: v1
+  kind: PersistentVolume
+  metadata:
+    annotations:
+      kubernetes.io/createdby: aws-ebs-dynamic-provisioner
+      pv.kubernetes.io/bound-by-controller: "yes"
+      pv.kubernetes.io/provisioned-by: kubernetes.io/aws-ebs
+    creationTimestamp: "2021-10-20T18:10:23Z"
+    finalizers:
+    - kubernetes.io/pv-protection
+    labels:
+      failure-domain.beta.kubernetes.io/region: us-east-1
+      failure-domain.beta.kubernetes.io/zone: us-east-1a
+    name: pvc-50869353-cef4-418e-abfe-6c20317720b5
+    resourceVersion: "249481761"
+    uid: 8e2bf467-4c55-4403-9af0-cddde73d26aa
+  spec:
+    accessModes:
+    - ReadWriteOnce
+    awsElasticBlockStore:
+      fsType: ext4
+      volumeID: aws://us-east-1a/vol-00435fe6f0cdd21a3
+    capacity:
+      storage: 200Gi
+    claimRef:
+      apiVersion: v1
+      kind: PersistentVolumeClaim
+      name: elasticsearch-data-elastic-search-es-default-0
+      namespace: kube-system
+      resourceVersion: "4151"
+      uid: 50869353-cef4-418e-abfe-6c20317720b5
+    nodeAffinity:
+      required:
+        nodeSelectorTerms:
+        - matchExpressions:
+          - key: failure-domain.beta.kubernetes.io/zone
+            operator: In
+            values:
+            - us-east-1a
+          - key: failure-domain.beta.kubernetes.io/region
+            operator: In
+            values:
+            - us-east-1
+    persistentVolumeReclaimPolicy: Retain
+    storageClassName: encrypted-gp2
+    volumeMode: Filesystem
+  status:
+    phase: Released
+- apiVersion: v1
+  kind: PersistentVolume
+  metadata:
+    annotations:
+      pv.beta.kubernetes.io/gid: "40005"
+      pv.kubernetes.io/provisioned-by: example.com/aws-efs
+    creationTimestamp: "2021-10-20T18:10:13Z"
+    finalizers:
+    - kubernetes.io/pv-protection
+    name: pvc-5aa07bd0-5277-4d78-a18a-b520531d93b6
+    resourceVersion: "3883"
+    uid: ad1b4b46-c714-47a6-84a5-abd9c822d5c5
+  spec:
+    accessModes:
+    - ReadWriteMany
+    capacity:
+      storage: 1Mi
+    claimRef:
+      apiVersion: v1
+      kind: PersistentVolumeClaim
+      name: efs-idwms
+      namespace: default
+      resourceVersion: "3440"
+      uid: 5aa07bd0-5277-4d78-a18a-b520531d93b6
+    mountOptions:
+    - vers=4.1
+    nfs:
+      path: /efs-idwms-pvc-5aa07bd0-5277-4d78-a18a-b520531d93b6
+      server: fs-0cb93e1124d670fb9.efs.us-east-1.amazonaws.com
+    persistentVolumeReclaimPolicy: Retain
+    storageClassName: aws-efs
+    volumeMode: Filesystem
+  status:
+    phase: Bound
+- apiVersion: v1
+  kind: PersistentVolume
+  metadata:
+    annotations:
+      pv.beta.kubernetes.io/gid: "40002"
+      pv.kubernetes.io/provisioned-by: example.com/aws-efs
+    creationTimestamp: "2021-10-20T18:10:11Z"
+    finalizers:
+    - kubernetes.io/pv-protection
+    name: pvc-a0e7557a-760c-401a-b7f5-ce9a6fa57288
+    resourceVersion: "3525"
+    uid: 3daf0927-1c78-4520-b5c2-11de68d1e8c4
+  spec:
+    accessModes:
+    - ReadWriteMany
+    capacity:
+      storage: 1Mi
+    claimRef:
+      apiVersion: v1
+      kind: PersistentVolumeClaim
+      name: efs-connectorms
+      namespace: default
+      resourceVersion: "3435"
+      uid: a0e7557a-760c-401a-b7f5-ce9a6fa57288
+    mountOptions:
+    - vers=4.1
+    nfs:
+      path: /efs-connectorms-pvc-a0e7557a-760c-401a-b7f5-ce9a6fa57288
+      server: fs-0cb93e1124d670fb9.efs.us-east-1.amazonaws.com
+    persistentVolumeReclaimPolicy: Retain
+    storageClassName: aws-efs
+    volumeMode: Filesystem
+  status:
+    phase: Bound
+- apiVersion: v1
+  kind: PersistentVolume
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"v1","kind":"PersistentVolume","metadata":{"annotations":{},"name":"pvc-a490ef84-1a43-4b12-9d71-7d1cda34aefa"},"spec":{"accessModes":["ReadWriteOnce"],"awsElasticBlockStore":{"fsType":"ext4","volumeID":"aws://us-east-1b/vol-0b71dda081118fd4a"},"capacity":{"storage":"200Gi"},"persistentVolumeReclaimPolicy":"Retain","storageClassName":"encrypted-gp2","volumeMode":"Filesystem"}}
+      pv.kubernetes.io/bound-by-controller: "yes"
+    creationTimestamp: "2023-07-12T20:24:06Z"
+    finalizers:
+    - kubernetes.io/pv-protection
+    name: pvc-a490ef84-1a43-4b12-9d71-7d1cda34aefa
+    resourceVersion: "249365777"
+    uid: 6fc0bed3-447d-43d1-9965-037c55c473c7
+  spec:
+    accessModes:
+    - ReadWriteOnce
+    awsElasticBlockStore:
+      fsType: ext4
+      volumeID: aws://us-east-1b/vol-0b71dda081118fd4a
+    capacity:
+      storage: 200Gi
+    claimRef:
+      apiVersion: v1
+      kind: PersistentVolumeClaim
+      name: elasticsearch-master-elasticsearch-master-0
+      namespace: default
+      resourceVersion: "249365775"
+      uid: 1d2f0bc8-bc07-4b87-943c-3db6e790db3a
+    persistentVolumeReclaimPolicy: Retain
+    storageClassName: encrypted-gp2
+    volumeMode: Filesystem
+  status:
+    phase: Bound
+- apiVersion: v1
+  kind: PersistentVolume
+  metadata:
+    annotations:
+      kubernetes.io/createdby: aws-ebs-dynamic-provisioner
+      pv.kubernetes.io/bound-by-controller: "yes"
+      pv.kubernetes.io/provisioned-by: kubernetes.io/aws-ebs
+    creationTimestamp: "2023-07-13T04:00:32Z"
+    finalizers:
+    - kubernetes.io/pv-protection
+    labels:
+      topology.kubernetes.io/region: us-east-1
+      topology.kubernetes.io/zone: us-east-1a
+    name: pvc-a6204309-b369-4bd4-b027-f4780672f379
+    resourceVersion: "249483211"
+    uid: 042addc7-6d23-4c6b-8b09-6d6b1d262825
+  spec:
+    accessModes:
+    - ReadWriteOnce
+    awsElasticBlockStore:
+      fsType: ext4
+      volumeID: aws://us-east-1a/vol-04e103277be209bbe
+    capacity:
+      storage: 200Gi
+    claimRef:
+      apiVersion: v1
+      kind: PersistentVolumeClaim
+      name: elasticsearch-data-elastic-search-es-default-0
+      namespace: kube-system
+      resourceVersion: "249483167"
+      uid: a6204309-b369-4bd4-b027-f4780672f379
+    nodeAffinity:
+      required:
+        nodeSelectorTerms:
+        - matchExpressions:
+          - key: topology.kubernetes.io/region
+            operator: In
+            values:
+            - us-east-1
+          - key: topology.kubernetes.io/zone
+            operator: In
+            values:
+            - us-east-1a
+    persistentVolumeReclaimPolicy: Retain
+    storageClassName: encrypted-gp2
+    volumeMode: Filesystem
+  status:
+    phase: Bound
+- apiVersion: v1
+  kind: PersistentVolume
+  metadata:
+    annotations:
+      kubernetes.io/createdby: aws-ebs-dynamic-provisioner
+      pv.kubernetes.io/bound-by-controller: "yes"
+      pv.kubernetes.io/provisioned-by: kubernetes.io/aws-ebs
+    creationTimestamp: "2021-10-20T18:10:23Z"
+    finalizers:
+    - kubernetes.io/pv-protection
+    labels:
+      failure-domain.beta.kubernetes.io/region: us-east-1
+      failure-domain.beta.kubernetes.io/zone: us-east-1a
+    name: pvc-a835d69a-4c3b-42d7-a0ea-277dc9fde2a4
+    resourceVersion: "239701421"
+    uid: 1cd68e41-081a-4489-8a8d-119f3945cdd1
+  spec:
+    accessModes:
+    - ReadWriteOnce
+    awsElasticBlockStore:
+      fsType: ext4
+      volumeID: aws://us-east-1a/vol-04bebe9ae0f79e99b
+    capacity:
+      storage: 200Gi
+    claimRef:
+      apiVersion: v1
+      kind: PersistentVolumeClaim
+      name: elasticsearch-data-elastic-search-es-default-2
+      namespace: kube-system
+      resourceVersion: "4170"
+      uid: a835d69a-4c3b-42d7-a0ea-277dc9fde2a4
+    nodeAffinity:
+      required:
+        nodeSelectorTerms:
+        - matchExpressions:
+          - key: failure-domain.beta.kubernetes.io/region
+            operator: In
+            values:
+            - us-east-1
+          - key: failure-domain.beta.kubernetes.io/zone
+            operator: In
+            values:
+            - us-east-1a
+    persistentVolumeReclaimPolicy: Retain
+    storageClassName: encrypted-gp2
+    volumeMode: Filesystem
+  status:
+    phase: Released
+- apiVersion: v1
+  kind: PersistentVolume
+  metadata:
+    annotations:
+      pv.beta.kubernetes.io/gid: "40001"
+      pv.kubernetes.io/provisioned-by: example.com/aws-efs
+    creationTimestamp: "2021-10-20T18:10:12Z"
+    finalizers:
+    - kubernetes.io/pv-protection
+    name: pvc-aa4e2ca1-de23-4f9f-a1f0-d12e91a9a309
+    resourceVersion: "3627"
+    uid: 165b48fc-c7fc-4ab3-85ad-f232d36caced
+  spec:
+    accessModes:
+    - ReadWriteMany
+    capacity:
+      storage: 1Mi
+    claimRef:
+      apiVersion: v1
+      kind: PersistentVolumeClaim
+      name: ecm-shared-volume
+      namespace: default
+      resourceVersion: "3436"
+      uid: aa4e2ca1-de23-4f9f-a1f0-d12e91a9a309
+    mountOptions:
+    - vers=4.1
+    nfs:
+      path: /ecm-shared-volume-pvc-aa4e2ca1-de23-4f9f-a1f0-d12e91a9a309
+      server: fs-0cb93e1124d670fb9.efs.us-east-1.amazonaws.com
+    persistentVolumeReclaimPolicy: Retain
+    storageClassName: aws-efs
+    volumeMode: Filesystem
+  status:
+    phase: Bound
+- apiVersion: v1
+  kind: PersistentVolume
+  metadata:
+    annotations:
+      kubernetes.io/createdby: aws-ebs-dynamic-provisioner
+      pv.kubernetes.io/bound-by-controller: "yes"
+      pv.kubernetes.io/provisioned-by: kubernetes.io/aws-ebs
+    creationTimestamp: "2021-10-20T18:10:19Z"
+    finalizers:
+    - kubernetes.io/pv-protection
+    labels:
+      failure-domain.beta.kubernetes.io/region: us-east-1
+      failure-domain.beta.kubernetes.io/zone: us-east-1b
+    name: pvc-f38977de-306f-46aa-9f81-ee024f79e1ec
+    resourceVersion: "4226"
+    uid: e834d7a5-fd7d-4714-bc34-2b5c4decb7e8
+  spec:
+    accessModes:
+    - ReadWriteOnce
+    awsElasticBlockStore:
+      fsType: ext4
+      volumeID: aws://us-east-1b/vol-091213af0fe18f05d
+    capacity:
+      storage: 100Gi
+    claimRef:
+      apiVersion: v1
+      kind: PersistentVolumeClaim
+      name: data-saviynt-mysql-master-0
+      namespace: default
+      resourceVersion: "3808"
+      uid: f38977de-306f-46aa-9f81-ee024f79e1ec
+    nodeAffinity:
+      required:
+        nodeSelectorTerms:
+        - matchExpressions:
+          - key: failure-domain.beta.kubernetes.io/region
+            operator: In
+            values:
+            - us-east-1
+          - key: failure-domain.beta.kubernetes.io/zone
+            operator: In
+            values:
+            - us-east-1b
+    persistentVolumeReclaimPolicy: Retain
+    storageClassName: encrypted-gp2
+    volumeMode: Filesystem
+  status:
+    phase: Bound
+- apiVersion: v1
+  kind: PersistentVolume
+  metadata:
+    annotations:
+      pv.beta.kubernetes.io/gid: "40003"
+      pv.kubernetes.io/provisioned-by: example.com/aws-efs
+    creationTimestamp: "2021-10-20T18:10:12Z"
+    finalizers:
+    - kubernetes.io/pv-protection
+    name: pvc-fceb15c5-0961-4dc6-bbd8-1334d845fd66
+    resourceVersion: "3711"
+    uid: 4e6e85a9-8923-4289-943c-1edf939e1cf9
+  spec:
+    accessModes:
+    - ReadWriteMany
+    capacity:
+      storage: 1Mi
+    claimRef:
+      apiVersion: v1
+      kind: PersistentVolumeClaim
+      name: efs-apm-agent-pvc
+      namespace: default
+      resourceVersion: "3434"
+      uid: fceb15c5-0961-4dc6-bbd8-1334d845fd66
+    mountOptions:
+    - vers=4.1
+    nfs:
+      path: /efs-apm-agent-pvc-pvc-fceb15c5-0961-4dc6-bbd8-1334d845fd66
+      server: fs-0cb93e1124d670fb9.efs.us-east-1.amazonaws.com
+    persistentVolumeReclaimPolicy: Retain
+    storageClassName: aws-efs
+    volumeMode: Filesystem
+  status:
+    phase: Bound
+kind: List
+metadata:
+  resourceVersion: ""

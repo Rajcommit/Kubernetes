@@ -1,0 +1,12 @@
+kubectl get pv
+
+
+pvc-a490ef84-1a43-4b12-9d71-7d1cda34aefa   200Gi      RWO            Retain           Bound      default/elasticsearch-master-elasticsearch-master-0    
+
+
+kubectl get pvc
+
+elasticsearch-master-elasticsearch-master-0   Bound    pvc-a490ef84-1a43-4b12-9d71-7d1cda34aefa   200Gi      RWO            encrypted-gp2   43d
+
+
+kubectl get statefulset 

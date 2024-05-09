@@ -1,0 +1,28 @@
+kubectl get ingress -n kubernetes-dashboard
+
+
+aws eks --region ap-southeast-1 update-kubeconfig --name    release-temp-dev-eks
+
+aws secretsmanager get-secret-value --secret-id <secret-id>
+aws secretsmanager get-secret-value --secret-id 2494-use1-testathon-qa-es-user_Secret_Key --query SecretString --output text
+
+
+
+
+aws secretsmanager list-secrets | grep testathon-qa*
+
+
+accenturefederal-partner.saviyntcloud.com
+
+aws eks --region us-east-1 update-kubeconfig --name  accenturefederal-partner-eks
+
+
+aws ec2 describe-instances --filters "Name=tag:Amit,Values=MyInstance";
+aws ec2 describe-instances --filters "Name=image-id,Values=ami-x0123456,ami-y0123456,ami-z0123456"
+
+aws ec2 describe-instances --filters "Name=image-id,Values=ami-x0123456,ami-y0123456,ami-z0123456"
+
+
+aws ec2 describe-instances
+
+aws ec2 describe-instances

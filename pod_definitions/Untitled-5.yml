@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: Binding
+metadata:
+  name: pod-bind   # Provide a name for the Binding object
+target:
+  apiVersion: v1
+  kind: Node
+  name: ip-100-70-68-75.us-east-2.compute.internal      # Specify the name of the node to bind the pod to

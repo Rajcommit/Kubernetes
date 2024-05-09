@@ -1,0 +1,486 @@
+[?2004h(B)0[?1049h[1;48r[m[4l[39;49m[?1h=[?1h=[?25l[39;49m[m[H[J[46;111H[0;7m[ Reading... ][m[46;109H[0;7m[ Read 490 lines ][m[H[0;7m  GNU nano 5.8                                                                                         /tmp/kubectl-edit-309690882.yaml                                                                                                    [1;234H[m[47d[0;7m^G[m Help[47;19H[0;7m^O[m Write Out[37G[0;7m^W[m Where Is[55G[0;7m^K[m Cut[47;73H[0;7m^T[m Execute[47;91H[0;7m^C[m Location[109G[0;7mM-U[m Undo[47;127H[0;7mM-A[m Set Mark	[0;7mM-][m To Bracket    [0;7mM-Q[m Previous[181G[0;7m^B[m Back[47;199H[0;7m^◂[m Prev Word	[0;7m^A[m Home[48d[0;7m^X[m Exit[48;19H[0;7m^R[m Read File[37G[0;7m^\[m Replace[48;55H[0;7m^U[m Paste[48;73H[0;7m^J[m Justify[48;91H[0;7m^/[m Go To Line     [0;7mM-E[m Redo[48;127H[0;7mM-6[m Copy[48;145H[0;7m^Q[m Where Was	  [0;7mM-W[m Next[48;181H[0;7m^F[m Forward[48;199H[0;7m^▸[m Next Word	[0;7m^E[m End[2d[36m# Please edit the object below. Lines beginning with a '#' will be ignored,[3d# and an empty file will abort the edit. If an error occurs while saving this file will be[4d# reopened with the relevant failures.[5d#[6d[39m[mapiVersion: v1[7dkind: Pod[8dmetadata:[9;3Hannotations:[10;5Hkubectl.kubernetes.io/restartedAt: "2024-03-14T19:11:51+05:30"[11;5Hkubernetes.io/psp: eks.privileged[12;3HcreationTimestamp: "2024-03-14T13:41:53Z"[13;3HgenerateName: ecm-worker-75b4899498-[14;3Hlabels:[15;5Happ.kubernetes.io/name: ecm-worker[16;5Hpod-template-hash: 75b4899498[17;3Hname: ecm-worker-75b4899498-9ctbw[18;3Hnamespace: default[19;3HownerReferences:[20;3H- apiVersion: apps/v1[21;5HblockOwnerDeletion: true[22;5Hcontroller: true[23;5Hkind: ReplicaSet[24;5Hname: ecm-worker-75b4899498[25;5Huid: fe2b1898-8744-4cd2-b096-4ab6e6101348[26;3HresourceVersion: "268653025"[27;3Huid: 18ac44d5-6fca-4294-aef9-3c03b9bbf609[28dspec:[29;3Hcontainers:[30;3H- args:[31;5H- /init/ecm-start.sh[32;5Hcommand:[33;5H- /bin/bash[34;5Henv:[35;5H- name: UMASK[36;7Hvalue: "0022"[37;5H- name: FQDN[38;7Hvalue: hcl-partner-v2021.saviyntcloud.com[39;5H- name: IS_RUNNING_IN_K8S[40;7Hvalue: "true"[41;5H- name: GIT_BASE_FOLDER[42;7Hvalue: /application_instance/custom_code/[43;5H- name: ECM_RESTART_URL[44;7Hvalue: http://bouncer:3000/reset_ecm[45;5H- name: DISABLE_JOBS[2d[34h[?25h[?25l[46;86H[0;7m[ line   1/491 ( 0%), col  1/76 (  1%), char     0/14580 ( 0%) ][m[2d[34h[?25h[?25l[46;150H[2d[34h[?25h[?25l[46;150H[2d[34h[?25h[?25l[46;150H[2d[34h[?25h[?25l[46;150H[2d[34h[?25h[?25l[46;150H[2d[34h[?25h[?25l[46d[J[48d[34h[?25h[48;1H[?1049l[?1l>[?2004lapiVersion: v1
+kind: Pod
+metadata:
+  annotations:
+    kubectl.kubernetes.io/restartedAt: "2024-03-14T19:11:51+05:30"
+    kubernetes.io/psp: eks.privileged
+  creationTimestamp: "2024-03-14T13:41:53Z"
+  generateName: ecm-worker-75b4899498-
+  labels:
+    app.kubernetes.io/name: ecm-worker
+    pod-template-hash: 75b4899498
+  name: ecm-worker-75b4899498-9ctbw
+  namespace: default
+  ownerReferences:
+  - apiVersion: apps/v1
+    blockOwnerDeletion: true
+    controller: true
+    kind: ReplicaSet
+    name: ecm-worker-75b4899498
+    uid: fe2b1898-8744-4cd2-b096-4ab6e6101348
+  resourceVersion: "268653025"
+  uid: 18ac44d5-6fca-4294-aef9-3c03b9bbf609
+spec:
+  containers:
+  - args:
+    - /init/ecm-start.sh
+    command:
+    - /bin/bash
+    env:
+    - name: UMASK
+      value: "0022"
+    - name: FQDN
+      value: hcl-partner-v2021.saviyntcloud.com
+    - name: IS_RUNNING_IN_K8S
+      value: "true"
+    - name: GIT_BASE_FOLDER
+      value: /application_instance/custom_code/
+    - name: ECM_RESTART_URL
+      value: http://bouncer:3000/reset_ecm
+    - name: DISABLE_JOBS
+      value: "false"
+    - name: JAVA_OPTS
+      value: -Xms2000m -Xmx14500m -Xverify:none -Djavax.net.ssl.trustStore=/saviynt_shared/saviynt/security/cacerts
+        -Djavax.net.ssl.trustStorePassword=changeit -Dcom.sun.jndi.ldap.object.disableEndpointIdentification=true
+        -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/saviynt_shared/ecm_dumps/ecm-worker.bin
+    - name: SHARED_BASE_FOLDER
+      value: /saviynt_shared
+    - name: ELASTIC_APM_APPLICATION_PACKAGES
+      value: com.saviynt,org.saviynt
+    - name: ELASTIC_APM_ENABLED
+      value: "true"
+    - name: ELASTIC_APM_SERVICE_NAME
+      value: ecm-worker
+    - name: ELASTIC_APM_ENVIRONMENT
+      value: hcl-partner-v2021-eks
+    - name: ELASTIC_APM_GLOBAL_LABELS
+      value: tenant=hcl,environment=partner
+    - name: ELASTIC_APM_CIRCUIT_BREAKER_ENABLED
+      value: "true"
+    - name: ELASTIC_APM_CLOUD_PROVIDER
+      value: AUTO
+    - name: ELASTIC_APM_ENABLE_EXPERIMENTAL_INSTRUMENTATIONS
+      value: "false"
+    - name: ELASTIC_APM_INSTRUMENT
+      value: "true"
+    - name: ELASTIC_APM_JAR_PATH
+      value: /elastic/apm/agent/elastic-apm-agent.jar
+    - name: ELASTIC_APM_LOG_FILE_SIZE
+      value: 50mb
+    - name: ELASTIC_APM_LOG_FORMAT_FILE
+      value: JSON
+    - name: ELASTIC_APM_MAX_QUEUE_SIZE
+      value: "1024"
+    - name: ELASTIC_APM_METRICS_INTERVAL
+      value: 30s
+    - name: ELASTIC_APM_PROFILING_INFERRED_SPANS_ENABLED
+      value: "true"
+    - name: ELASTIC_APM_PROFILING_INFERRED_SPANS_INCLUDED_CLASSES
+      value: org.saviynt*,com.saviynt*
+    - name: ELASTIC_APM_PROFILING_INFERRED_SPANS_MIN_DURATION
+      value: 50ms
+    - name: ELASTIC_APM_PROFILING_INFERRED_SPANS_SAMPLING_INTERVAL
+      value: 100ms
+    - name: ELASTIC_APM_RECORDING
+      value: "true"
+    - name: ELASTIC_APM_SERVER_URL
+      value: https://monitor-saviynt.apm.us-east-1.aws.found.io:443
+    - name: ELASTIC_APM_SPAN_FRAMES_MIN_DURATION
+      value: 10ms
+    - name: ELASTIC_APM_SPAN_MIN_DURATION
+      value: 50ms
+    - name: ELASTIC_APM_STACK_TRACE_LIMIT
+      value: "50"
+    - name: ELASTIC_APM_STRESS_MONITORING_INTERVAL
+      value: 10s
+    - name: ELASTIC_APM_STRESS_MONITOR_CPU_DURATION_THRESHOLD
+      value: 1m
+    - name: ELASTIC_APM_STRESS_MONITOR_GC_RELIEF_THRESHOLD
+      value: "0.75"
+    - name: ELASTIC_APM_STRESS_MONITOR_GC_STRESS_THRESHOLD
+      value: "0.95"
+    - name: ELASTIC_APM_STRESS_MONITOR_SYSTEM_CPU_RELIEF_THRESHOLD
+      value: "0.8"
+    - name: ELASTIC_APM_STRESS_MONITOR_SYSTEM_CPU_STRESS_THRESHOLD
+      value: "0.95"
+    - name: ELASTIC_APM_TRANSACTION_IGNORE_URLS
+      value: /VAADIN/*,/heartbeat*,/favicon.ico,*.js,*.css,*.jpg,*.jpeg,*.png,*.gif,*.webp,*.svg,*.woff,*.woff2,/jolokia*,/metrics*,/actuator/info,/actuator/health
+    - name: ELASTIC_APM_TRANSACTION_MAX_SPANS
+      value: "500"
+    - name: ELASTIC_APM_TRANSACTION_SAMPLE_RATE
+      value: "0.8"
+    - name: ELASTIC_APM_USE_ELASTIC_TRANSPARENT_HEADER
+      value: "true"
+    - name: ELASTIC_APM_USE_PATH_AS_TRANSACTION_NAME
+      value: "true"
+    - name: ELASTIC_APM_VERIFY_SERVER_CERT
+      value: "false"
+    - name: ELASTIC_APM_SECRET_TOKEN
+      valueFrom:
+        secretKeyRef:
+          key: secret-token
+          name: apm-secret-token
+    - name: ELASTIC_APM_SERVICE_NODE_NAME
+      valueFrom:
+        fieldRef:
+          apiVersion: v1
+          fieldPath: metadata.name
+    - name: CAPTCHA_KEY
+      value: 6LflwrkUAAAAAFxgK07bet-Wd0SCqFDZXzRESBOA
+    - name: CATALINA_OUT
+      value: /dev/stdout
+    - name: ELASTICSEARCH_HOSTNAME
+      value: elasticsearch-master
+    - name: ELASTICSEARCH_ISAWSES
+      value: "FALSE"
+    - name: ELASTICSEARCH_PORT
+      value: "9200"
+    - name: ELASTICSEARCH_PROTOCOL
+      value: http
+    - name: ELASTICSEARCH_REGION
+      value: na
+    - name: ELASTICSEARCH_SERVICENAME
+      value: missing
+    - name: ELASTICSEARCH_USERNAME
+      value: na
+    - name: GRAILS_PLUGIN_SPRINGSECURITY_DAO_REFLECTIONSALTSOURCEPROPERTY
+      value: missing
+    - name: GRAILS_PLUGIN_SPRINGSECURITY_PASSWORD_ALGORITHM
+      value: missing
+    - name: GRAILS_PLUGIN_SPRINGSECURITY_PASSWORD_HASH_ITERATIONS
+      value: missingg
+    - name: GRAILS_PLUGIN_SPRINGSECURITY_REST_TOKEN_STORAGE_JWT_EXPIRATION
+      value: "3600"
+    - name: GRAILS_PLUGIN_SPRINGSECURITY_SALT_ITERATIONS
+      value: missing
+    - name: MYSQL_SSMDAU_USER
+      value: ssmdau
+    - name: PASSWORD_HASH
+      value: bcrypt
+    - name: ELASTICSEARCH_AWSACCESSKEY
+      valueFrom:
+        secretKeyRef:
+          key: elastic-aws-access-key
+          name: saviynt-secrets
+    - name: ELASTICSEARCH_AWSSECRETKEY
+      valueFrom:
+        secretKeyRef:
+          key: elastic-aws-secret-key
+          name: saviynt-secrets
+    - name: ELASTICSEARCH_PASSWORD
+      valueFrom:
+        secretKeyRef:
+          key: elastic-password
+          name: saviynt-secrets
+    - name: GRAILS_PLUGIN_SPRINGSECURITY_REST_TOKEN_STORAGE_JWT_SECRET
+      valueFrom:
+        secretKeyRef:
+          key: jwt-secret
+          name: saviynt-secrets
+    - name: MYSQL_PASSWORD
+      valueFrom:
+        secretKeyRef:
+          key: mysql-root-password
+          name: saviynt-mysql
+    - name: MYSQL_SSMDAU_PASSWORD
+      valueFrom:
+        secretKeyRef:
+          key: mysql-ssmdau-password
+          name: saviynt-secrets
+    - name: SAVIYNT_ENCRYPTION_KEY
+      valueFrom:
+        secretKeyRef:
+          key: value
+          name: saviynt-encryption-key
+    image: 661222050851.dkr.ecr.us-east-1.amazonaws.com/ecm:Release-2021.0.2.9
+    imagePullPolicy: Always
+    livenessProbe:
+      failureThreshold: 3
+      httpGet:
+        httpHeaders:
+        - name: Host
+          value: hcl-partner-v2021.saviyntcloud.com
+        path: /ECM/login/auth
+        port: 8080
+        scheme: HTTP
+      initialDelaySeconds: 300
+      periodSeconds: 10
+      successThreshold: 1
+      timeoutSeconds: 10
+    name: ecm
+    readinessProbe:
+      failureThreshold: 3
+      httpGet:
+        httpHeaders:
+        - name: Host
+          value: hcl-partner-v2021.saviyntcloud.com
+        path: /ECM/login/auth
+        port: 8080
+        scheme: HTTP
+      initialDelaySeconds: 300
+      periodSeconds: 20
+      successThreshold: 1
+      timeoutSeconds: 10
+    resources:
+      limits:
+        cpu: "2"
+        memory: 14500Mi
+      requests:
+        cpu: 700m
+        memory: 2000Mi
+    terminationMessagePath: /dev/termination-log
+    terminationMessagePolicy: File
+    volumeMounts:
+    - mountPath: /tmp/ecm_conf
+      name: config-volume
+    - mountPath: /application_instance
+      name: custom-code-repo
+    - mountPath: /saviynt_shared
+      name: ecm-shared-volume
+    - mountPath: /init/ecm-start.sh
+      name: git-sync
+      readOnly: true
+      subPath: ecm-start.sh
+    - mountPath: /elastic/apm/agent
+      name: elastic-apm-agent
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: kube-api-access-vhq8s
+      readOnly: true
+  - args:
+    - /init/sync-sidecar-start.sh
+    command:
+    - /bin/sh
+    env:
+    - name: GIT_REPO
+      value: git@gitlab.com:saviynt/cloud-ops/customer-customizations/hcl/hcl-partner-v2021-eks.git
+    - name: GIT_CUSTOM_CODE_DIR
+      value: custom_code
+    - name: GIT_ROOT_DIR
+      value: /application_instance
+    image: alpine/git
+    imagePullPolicy: Always
+    name: ecm-sync
+    resources:
+      limits:
+        cpu: 20m
+        memory: 50Mi
+      requests:
+        cpu: 10m
+        memory: 25Mi
+    terminationMessagePath: /dev/termination-log
+    terminationMessagePolicy: File
+    volumeMounts:
+    - mountPath: /init/sync-sidecar-start.sh
+      name: git-sync
+      readOnly: true
+      subPath: sync-sidecar-start.sh
+    - mountPath: /root/.ssh/config
+      name: git-sync
+      subPath: ssh.config
+    - mountPath: /tmp/known_hosts
+      name: git-sync
+      subPath: known_hosts
+    - mountPath: /root/.gitconfig
+      name: git-sync
+      subPath: .gitconfig
+    - mountPath: /application_instance
+      name: custom-code-repo
+    - mountPath: /root/.ssh/id_rsa
+      name: git-key
+      subPath: id_rsa
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: kube-api-access-vhq8s
+      readOnly: true
+  dnsPolicy: ClusterFirst
+  enableServiceLinks: true
+  imagePullSecrets:
+  - name: us-west-1-ecr-registry
+  - name: us-east-1-ecr-registry
+  - name: ap-south-1-ecr-registry
+  - name: dockerhub
+  initContainers:
+  - command:
+    - cp
+    - -v
+    - /usr/agent/elastic-apm-agent.jar
+    - /elastic/apm/agent
+    image: docker.elastic.co/observability/apm-agent-java:1.25.0
+    imagePullPolicy: IfNotPresent
+    name: elastic-java-agent
+    resources: {}
+    terminationMessagePath: /dev/termination-log
+    terminationMessagePolicy: File
+    volumeMounts:
+    - mountPath: /elastic/apm/agent
+      name: elastic-apm-agent
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: kube-api-access-vhq8s
+      readOnly: true
+  - args:
+    - /init/ecm-init-start.sh
+    command:
+    - /bin/sh
+    env:
+    - name: GIT_REPO
+      value: git@gitlab.com:saviynt/cloud-ops/customer-customizations/hcl/hcl-partner-v2021-eks.git
+    - name: GIT_CUSTOM_CODE_DIR
+      value: custom_code
+    - name: GIT_ROOT_DIR
+      value: /application_instance
+    - name: SHARED_BASE_FOLDER
+      value: /saviynt_shared
+    image: alpine/git
+    imagePullPolicy: Always
+    name: ecm-init
+    resources: {}
+    terminationMessagePath: /dev/termination-log
+    terminationMessagePolicy: File
+    volumeMounts:
+    - mountPath: /init/ecm-init-start.sh
+      name: git-sync
+      readOnly: true
+      subPath: ecm-init-start.sh
+    - mountPath: /root/.ssh/config
+      name: git-sync
+      subPath: ssh.config
+    - mountPath: /tmp/known_hosts
+      name: git-sync
+      subPath: known_hosts
+    - mountPath: /application_instance
+      name: custom-code-repo
+    - mountPath: /root/.ssh/id_rsa
+      name: git-key
+      subPath: id_rsa
+    - mountPath: /saviynt_shared
+      name: ecm-shared-volume
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: kube-api-access-vhq8s
+      readOnly: true
+  nodeName: ip-100-64-148-43.ec2.internal
+  preemptionPolicy: PreemptLowerPriority
+  priority: 1000000
+  priorityClassName: high-priority
+  restartPolicy: Always
+  schedulerName: default-scheduler
+  securityContext: {}
+  serviceAccount: default
+  serviceAccountName: default
+  terminationGracePeriodSeconds: 30
+  tolerations:
+  - effect: NoExecute
+    key: node.kubernetes.io/not-ready
+    operator: Exists
+    tolerationSeconds: 300
+  - effect: NoExecute
+    key: node.kubernetes.io/unreachable
+    operator: Exists
+    tolerationSeconds: 300
+  volumes:
+  - configMap:
+      defaultMode: 420
+      name: ecm-config
+    name: config-volume
+  - configMap:
+      defaultMode: 420
+      name: git-sync
+    name: git-sync
+  - emptyDir: {}
+    name: custom-code-repo
+  - name: ecm-shared-volume
+    persistentVolumeClaim:
+      claimName: ecm-shared-volume
+  - name: git-key
+    secret:
+      defaultMode: 384
+      items:
+      - key: ssh-git-client-private-key
+        path: id_rsa
+      secretName: ssh-git-client-secret
+  - emptyDir: {}
+    name: elastic-apm-agent
+  - name: kube-api-access-vhq8s
+    projected:
+      defaultMode: 420
+      sources:
+      - serviceAccountToken:
+          expirationSeconds: 3607
+          path: token
+      - configMap:
+          items:
+          - key: ca.crt
+            path: ca.crt
+          name: kube-root-ca.crt
+      - downwardAPI:
+          items:
+          - fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+            path: namespace
+status:
+  conditions:
+  - lastProbeTime: null
+    lastTransitionTime: "2024-03-14T13:41:53Z"
+    message: 'containers with incomplete status: [elastic-java-agent ecm-init]'
+    reason: ContainersNotInitialized
+    status: "False"
+    type: Initialized
+  - lastProbeTime: null
+    lastTransitionTime: "2024-03-14T13:41:53Z"
+    message: 'containers with unready status: [ecm ecm-sync]'
+    reason: ContainersNotReady
+    status: "False"
+    type: Ready
+  - lastProbeTime: null
+    lastTransitionTime: "2024-03-14T13:41:53Z"
+    message: 'containers with unready status: [ecm ecm-sync]'
+    reason: ContainersNotReady
+    status: "False"
+    type: ContainersReady
+  - lastProbeTime: null
+    lastTransitionTime: "2024-03-14T13:41:53Z"
+    status: "True"
+    type: PodScheduled
+  containerStatuses:
+  - image: 661222050851.dkr.ecr.us-east-1.amazonaws.com/ecm:Release-2021.0.2.9
+    imageID: ""
+    lastState: {}
+    name: ecm
+    ready: false
+    restartCount: 0
+    started: false
+    state:
+      waiting:
+        reason: PodInitializing
+  - image: alpine/git
+    imageID: ""
+    lastState: {}
+    name: ecm-sync
+    ready: false
+    restartCount: 0
+    started: false
+    state:
+      waiting:
+        reason: PodInitializing
+  hostIP: 100.64.148.43
+  initContainerStatuses:
+  - image: docker.elastic.co/observability/apm-agent-java:1.25.0
+    imageID: ""
+    lastState: {}
+    name: elastic-java-agent
+    ready: false
+    restartCount: 0
+    state:
+      waiting:
+        reason: PodInitializing
+  - image: alpine/git
+    imageID: ""
+    lastState: {}
+    name: ecm-init
+    ready: false
+    restartCount: 0
+    state:
+      waiting:
+        reason: PodInitializing
+  phase: Pending
+  qosClass: Burstable
+  startTime: "2024-03-14T13:41:53Z"

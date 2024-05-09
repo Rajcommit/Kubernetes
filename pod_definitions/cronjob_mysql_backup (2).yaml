@@ -1,0 +1,26 @@
+{{ if .Values.mysql.enabled }}
+{{ if .Values.mysql.backup.enabled }}
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mysql-backup
+data:
+  mysql-backup.sh: |
+    #!/bin/bash
+    [ ! -d /opt/mysql_backups ] && mkdir /opt/mysql_backups
+    timestamp=$(date +%Y%m%d%H%M)
+    mysqldump --user=${MYSQL_USERNAME} --password=${MYSQL_PASSWORD} --host=${MYSQL_HOSTNAME} --databases ${MYSQL_SCHEMA} --max-allowed-packet 1g --verbose --column-statistics=0 > "/opt/mysql_backups/mysql_backup_$timestamp.sql"
+    cd /opt/mysql_backups/
+    password=$(openssl base64 <<< "$K8S_CLUSTER_NAME")
+    zip --password "$password" "mysql_backup_$timestamp" "mysql_backup_$timestamp.sql"
+    aws configure set aws_access_key_id ${MYSQL_BACKUP_S3ACCESS_KEY}
+    aws configure set aws_secret_access_key ${MYSQL_BACKUP_S3SECRET_KEY}
+    aws configure set default.region {{ .Values.mysql.backup.region }}
+    aws s3 cp "/opt/mysql_backups/mysql_backup_$timestamp.zip" s3://{{ .Values.mysql.backup.s3_bucket }}/{{ .Values.mysql.backup.s3_prefix }}/$K8S_CLUSTER_NAME/"mysql_backup_$timestamp.zip" --acl bucket-owner-full-control
+    rm -rf "mysql_backup_$timestamp.sql"
+    echo ${MYSQL_BACKUP_RETENTION_PERIOD}    
+    find /opt/mysql_backups/ -maxdepth 1 -type f -mtime "+$MYSQL_BACKUP_RETENTION_PERIOD" -print -delete
+    echo
+{{- end }}
+{{- end }}

@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: coredns-custom
+  namespace: kube-system
+data:
+  azurestack.server: |
+    ent.ad.mre:53 {
+        errors
+        cache 30
+        forward . 10.210.10.11 10.211.10.12  10.211.10.11 10.210.10.12
+    }
+
+
+kubectl apply -f olg_prod_dns.yaml
+
+telusqaeic.mysql.database.azure.com
+
+3YV7O9vme2JsJ6
