@@ -1,0 +1,146 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  annotations:
+    kubernetes.io/psp: eks.privileged
+    kubernetes.io/safe-to-evict: "false"
+    prometheus.io/port: "8085"
+    prometheus.io/scrape: "true"
+  creationTimestamp: "2023-10-26T05:38:12Z"
+  generateName: cluster-autoscaler-588569fb6b-
+  labels:
+    app: cluster-autoscaler
+    pod-template-hash: 588569fb6b
+  name: cluster-autoscaler-588569fb6b-w55zv
+  namespace: kube-system
+  ownerReferences:
+  - apiVersion: apps/v1
+    blockOwnerDeletion: true
+    controller: true
+    kind: ReplicaSet
+    name: cluster-autoscaler-588569fb6b
+    uid: d6513020-c941-4f32-9f72-150c00246832
+  resourceVersion: "35354098"
+  uid: dcd95898-950d-4e7b-a48e-55ae7b820696
+spec:
+  containers:
+  - command:
+    - ./cluster-autoscaler
+    - --v=4
+    - --stderrthreshold=info
+    - --cloud-provider=aws
+    - --skip-nodes-with-local-storage=false
+    - --expander=least-waste
+    - --node-group-auto-discovery=asg:tag=k8s.io/cluster-autoscaler/enabled,k8s.io/cluster-autoscaler/wpi-prod-migrate-eks
+    - --balance-similar-node-groups
+    - --skip-nodes-with-system-pods=false
+    image: k8s.gcr.io/autoscaling/cluster-autoscaler:v1.19.0
+    imagePullPolicy: Always
+    name: cluster-autoscaler
+    resources:
+      limits:
+        cpu: 100m
+        memory: 600Mi
+      requests:
+        cpu: 100m
+        memory: 600Mi
+    terminationMessagePath: /dev/termination-log
+    terminationMessagePolicy: File
+    volumeMounts:
+    - mountPath: /etc/ssl/certs/ca-certificates.crt
+      name: ssl-certs
+      readOnly: true
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: kube-api-access-kgxpl
+      readOnly: true
+  dnsPolicy: ClusterFirst
+  enableServiceLinks: true
+  nodeName: ip-10-192-5-151.ec2.internal
+  preemptionPolicy: PreemptLowerPriority
+  priority: 0
+  restartPolicy: Always
+  schedulerName: default-scheduler
+  securityContext: {}
+  serviceAccount: cluster-autoscaler
+  serviceAccountName: cluster-autoscaler
+  terminationGracePeriodSeconds: 30
+  tolerations:
+  - effect: NoExecute
+    key: node.kubernetes.io/not-ready
+    operator: Exists
+    tolerationSeconds: 300
+  - effect: NoExecute
+    key: node.kubernetes.io/unreachable
+    operator: Exists
+    tolerationSeconds: 300
+  volumes:
+  - hostPath:
+      path: /etc/ssl/certs/ca-bundle.crt
+      type: ""
+    name: ssl-certs
+  - name: kube-api-access-kgxpl
+    projected:
+      defaultMode: 420
+      sources:
+      - serviceAccountToken:
+          expirationSeconds: 3607
+          path: token
+      - configMap:
+          items:
+          - key: ca.crt
+            path: ca.crt
+          name: kube-root-ca.crt
+      - downwardAPI:
+          items:
+          - fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+            path: namespace
+status:
+  conditions:
+  - lastProbeTime: null
+    lastTransitionTime: "2023-10-26T05:38:12Z"
+    status: "True"
+    type: Initialized
+  - lastProbeTime: null
+    lastTransitionTime: "2023-10-30T06:20:33Z"
+    message: 'containers with unready status: [cluster-autoscaler]'
+    reason: ContainersNotReady
+    status: "False"
+    type: Ready
+  - lastProbeTime: null
+    lastTransitionTime: "2023-10-30T06:20:33Z"
+    message: 'containers with unready status: [cluster-autoscaler]'
+    reason: ContainersNotReady
+    status: "False"
+    type: ContainersReady
+  - lastProbeTime: null
+    lastTransitionTime: "2023-10-26T05:38:12Z"
+    status: "True"
+    type: PodScheduled
+  containerStatuses:
+  - containerID: docker://a02643e46ed0a351b9820e87f6bb3ab60535a427f541381520ff177bc781b1c0
+    image: k8s.gcr.io/autoscaling/cluster-autoscaler:v1.19.0
+    imageID: docker-pullable://k8s.gcr.io/autoscaling/cluster-autoscaler@sha256:d6e51b58808b5abe74b57666114efab748a6d8ba73afdb24cd2a7f91f11c4b1b
+    lastState:
+      terminated:
+        containerID: docker://a02643e46ed0a351b9820e87f6bb3ab60535a427f541381520ff177bc781b1c0
+        exitCode: 137
+        finishedAt: "2023-10-30T06:20:32Z"
+        reason: OOMKilled
+        startedAt: "2023-10-30T06:20:15Z"
+    name: cluster-autoscaler
+    ready: false
+    restartCount: 1082
+    started: false
+    state:
+      waiting:
+        message: back-off 5m0s restarting failed container=cluster-autoscaler pod=cluster-autoscaler-588569fb6b-w55zv_kube-system(dcd95898-950d-4e7b-a48e-55ae7b820696)
+        reason: CrashLoopBackOff
+  hostIP: 10.192.5.151
+  phase: Running
+  podIP: 10.192.5.168
+  podIPs:
+  - ip: 10.192.5.168
+  qosClass: Guaranteed
+  startTime: "2023-10-26T05:38:12Z"

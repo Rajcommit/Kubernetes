@@ -1,0 +1,594 @@
+# Please edit the object below. Lines beginning with a '#' will be ignored,
+# and an empty file will abort the edit. If an error occurs while saving this file will be
+# reopened with the relevant failures.
+#
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  annotations:
+    meta.helm.sh/release-name: saviynt
+    meta.helm.sh/release-namespace: default
+  creationTimestamp: "2022-10-13T20:28:47Z"
+  generation: 5
+  labels:
+    app.kubernetes.io/managed-by: Helm
+  name: esclean
+  namespace: default
+  resourceVersion: "209387889"
+  uid: 72642c05-c439-49de-91ba-de8635cd0f80
+spec:
+  concurrencyPolicy: Allow
+  failedJobsHistoryLimit: 1
+  jobTemplate:
+    metadata:
+      creationTimestamp: null
+    spec:
+      template:
+        metadata:
+          creationTimestamp: null
+        spec:
+          containers:
+          - command:
+            - /bin/sh
+            - -c
+            - |
+              apt-get update
+              apt-get install curl -y
+              curl --version
+              pwd
+              ls -al /es-index-del
+              /bin/bash /es-index-del/es-index-del.sh
+            env:
+            - name: ES_LOGS_MAX_AGE_IN_DAYS
+              value: "14"
+            - name: ELASTICSEARCH_OBSERVABILITY_HOST
+              value: https://elastic-search-es-http.kube-system.svc.cluster.local
+            - name: ELASTICSEARCH_OBSERVABILITY_PORT
+              value: "9200"
+            - name: ELASTICSEARCH_OBSERVABILITY_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  key: elastic
+                  name: elastic-search-es-elastic-user
+            image: savtest.azurecr.io/ubuntu:master
+            imagePullPolicy: IfNotPresent
+            name: esclean
+            resources: {}
+            terminationMessagePath: /dev/termination-log
+            terminationMessagePolicy: File
+            volumeMounts:
+            - mountPath: /es-index-del
+              name: es-index-del
+          dnsPolicy: ClusterFirst
+          restartPolicy: OnFailure
+          schedulerName: default-scheduler
+          securityContext: {}
+          terminationGracePeriodSeconds: 30
+          volumes:
+          - configMap:
+              defaultMode: 420
+              name: es-index-del
+            name: es-index-del
+  schedule: 0 1 * * *
+  successfulJobsHistoryLimit: 1
+  suspend: false
+status:
+  active:
+  - apiVersion: batch/v1
+    kind: Job
+    name: esclean-28026780
+    namespace: default
+    resourceVersion: "117534263"
+    uid: e0d1e4b4-4f81-48e0-8001-0b1ec7901f41
+  - apiVersion: batch/v1
+    kind: Job
+    name: esclean-28028220
+    namespace: default
+    resourceVersion: "118089114"
+    uid: 749b95df-a3d6-4ec0-acbd-a72d2c74e995
+  - apiVersion: batch/v1
+    kind: Job
+    name: esclean-28029660
+    namespace: default
+    resourceVersion: "118645342"
+    uid: d588fff6-19dd-48f2-989e-bbde3cfed8bb
+  - apiVersion: batch/v1
+    kind: Job
+    name: esclean-28031100
+    namespace: default
+    resourceVersion: "119204044"
+    uid: 3a2aeaad-3256-4115-8dd5-c60239674824
+  - apiVersion: batch/v1
+    kind: Job
+    name: esclean-28032540
+    namespace: default
+    resourceVersion: "119761548"
+    uid: 2eb16437-ce9f-4092-8cc3-96fc69904808
+  - apiVersion: batch/v1
+    kind: Job
+    name: esclean-28033980
+    namespace: default
+    resourceVersion: "120320023"
+    uid: e1cfc355-cde8-4086-be76-cc25cade6457
+  - apiVersion: batch/v1
+    kind: Job
+    name: esclean-28035420
+    namespace: default
+    resourceVersion: "120881545"
+    uid: 35198b0c-08fc-4c28-8d7e-19ae229865bf
+  - apiVersion: batch/v1
+    kind: Job
+    name: esclean-28036860
+    namespace: default
+    resourceVersion: "121441349"
+    uid: 37c8615f-82cb-4f62-be91-7a271b2efa33
+  - apiVersion: batch/v1
+    kind: Job
+    name: esclean-28038300
+    namespace: default
+    resourceVersion: "122004687"
+    uid: 27c40981-46a7-4e7f-88a1-db354d51f149
+  - apiVersion: batch/v1
+    kind: Job
+    name: esclean-28039740
+    namespace: default
+    resourceVersion: "122567035"
+    uid: 39325b8b-442b-4e10-b602-64bc0e89d3e6
+  - apiVersion: batch/v1
+    kind: Job
+    name: esclean-28041180
+    namespace: default
+    resourceVersion: "123130060"
+    uid: 5e97771d-6966-4ac9-a533-4a6544bf0edf
+  - apiVersion: batch/v1
+    kind: Job
+    name: esclean-28042620
+    namespace: default
+    resourceVersion: "123694243"
+    uid: e7c15290-8904-4897-84a0-e5de1dc5a8d1
+  - apiVersion: batch/v1
+    kind: Job
+    name: esclean-28044060
+    namespace: default
+    resourceVersion: "124259178"
+    uid: b56ae13b-ba9f-477f-a04d-6bcc6c2002a7
+  - apiVersion: batch/v1
+    kind: Job
+    name: esclean-28045500
+    namespace: default
+    resourceVersion: "124824568"
+    uid: 092e3bef-e8e8-487c-aa83-e97f48471ae3
+  - apiVersion: batch/v1
+    kind: Job
+    name: esclean-28046940
+    namespace: default
+    resourceVersion: "125391165"
+    uid: 3052fb15-9635-4f04-a391-689410fbcde0
+  - apiVersion: batch/v1
+    kind: Job
+    name: esclean-28048380
+    namespace: default
+    resourceVersion: "125958356"
+    uid: d15c2aae-d2f8-416d-bbc5-a9f0cde0fcc4
+  - apiVersion: batch/v1
+    kind: Job
+    name: esclean-28049820
+    namespace: default
+    resourceVersion: "126526474"
+    uid: b6d514e3-7603-4376-a0b4-b46244b2f350
+  - apiVersion: batch/v1
+    kind: Job
+    name: esclean-28051260
+    namespace: default
+    resourceVersion: "127095225"
+    uid: 3db5c6e0-73d7-4f7b-a656-3751954e0a9c
+  - apiVersion: batch/v1
+    kind: Job
+    name: esclean-28052700
+    namespace: default
+    resourceVersion: "127664823"
+    uid: 73c7d8fd-8e8a-4b48-ae55-0cad10ca2611
+  - apiVersion: batch/v1
+    kind: Job
+    name: esclean-28054140
+    namespace: default
+    resourceVersion: "128235369"
+    uid: 453d6c90-d2c9-4378-a406-fb08de216097
+  - apiVersion: batch/v1
+    kind: Job
+    name: esclean-28055580
+    namespace: default
+    resourceVersion: "128806541"
+    uid: 063528ad-c9e4-4c2d-b6a1-de2902ced8ba
+  - apiVersion: batch/v1
+    kind: Job
+    name: esclean-28057020
+    namespace: default
+    resourceVersion: "129382184"
+    uid: 7569faf3-0ab9-4ea7-bc1b-037b426e1326
+  - apiVersion: batch/v1
+    kind: Job
+    name: esclean-28058460
+    namespace: default
+    resourceVersion: "129956639"
+    uid: 9cdc2121-b124-426e-9f11-f9b81e62e9b0
+  - apiVersion: batch/v1
+    kind: Job
+    name: esclean-28059900
+    namespace: default
+    resourceVersion: "130534985"
+    uid: 5a3b1620-3dca-431e-ba3e-a3af6f245e1d
+  - apiVersion: batch/v1
+    kind: Job
+    name: esclean-28061340
+    namespace: default
+    resourceVersion: "131111260"
+    uid: 309503a7-73e9-410d-84b5-afce1f5e1295
+  - apiVersion: batch/v1
+    kind: Job
+    name: esclean-28062780
+    namespace: default
+    resourceVersion: "131689825"
+    uid: d64f354f-ba10-48eb-9f5d-80de8334972a
+  - apiVersion: batch/v1
+    kind: Job
+    name: esclean-28064220
+    namespace: default
+    resourceVersion: "132267737"
+    uid: 682bec47-d2f7-486f-b872-a677048d220e
+  - apiVersion: batch/v1
+    kind: Job
+    name: esclean-28065660
+    namespace: default
+    resourceVersion: "132851599"
+    uid: daa1588f-5d3b-41e9-bfde-cfa11e9e1e7a
+  - apiVersion: batch/v1
+    kind: Job
+    name: esclean-28067100
+    namespace: default
+    resourceVersion: "133430557"
+    uid: 791b4b06-3efc-4ff6-9af5-b9c346384d10
+  - apiVersion: batch/v1
+    kind: Job
+    name: esclean-28068540
+    namespace: default
+    resourceVersion: "134010394"
+    uid: 72224cfa-cc73-4e1e-bd77-dc17ff2a1e18
+  - apiVersion: batch/v1
+    kind: Job
+    name: esclean-28069980
+    namespace: default
+    resourceVersion: "134591068"
+    uid: 75413f76-c0d5-4973-82d5-1d2232d6f54c
+  - apiVersion: batch/v1
+    kind: Job
+    name: esclean-28071420
+    namespace: default
+    resourceVersion: "135172580"
+    uid: d67236f5-be60-4702-ba13-6ea2aec7a41c
+  - apiVersion: batch/v1
+    kind: Job
+    name: esclean-28072860
+    namespace: default
+    resourceVersion: "135762901"
+    uid: 6a39d90a-269e-40e4-b4c2-2f9b1a30b9c2
+  - apiVersion: batch/v1
+    kind: Job
+    name: esclean-28074300
+    namespace: default
+    resourceVersion: "136346289"
+    uid: bb87d6f0-65d8-43ab-a23b-79eb1029e7e9
+  - apiVersion: batch/v1
+    kind: Job
+    name: esclean-28075740
+    namespace: default
+    resourceVersion: "136930508"
+    uid: 60d285b1-a39e-41f9-819c-c40dd9782b4e
+  - apiVersion: batch/v1
+    kind: Job
+    name: esclean-28077180
+    namespace: default
+    resourceVersion: "137516380"
+    uid: 6ebb16af-e056-4c18-877e-0d4c2c33f82b
+  - apiVersion: batch/v1
+    kind: Job
+    name: esclean-28078620
+    namespace: default
+    resourceVersion: "138102630"
+    uid: 83175144-f6e3-4970-8725-d6a69d60429f
+  - apiVersion: batch/v1
+    kind: Job
+    name: esclean-28080060
+    namespace: default
+    resourceVersion: "138691786"
+    uid: f562531e-bd5a-4e3e-8fc1-a771d2f44609
+  - apiVersion: batch/v1
+    kind: Job
+    name: esclean-28081500
+    namespace: default
+    resourceVersion: "139279585"
+    uid: 9861ae9b-2e4a-4cff-8135-f835eaff3bd9
+  - apiVersion: batch/v1
+    kind: Job
+    name: esclean-28082940
+    namespace: default
+    resourceVersion: "139867998"
+    uid: e5f1cfc2-f335-4abe-b41c-32d1a37d897e
+  - apiVersion: batch/v1
+    kind: Job
+    name: esclean-28084380
+    namespace: default
+    resourceVersion: "140457056"
+    uid: 53656f0e-b962-46bd-9eaa-96107929d773
+  - apiVersion: batch/v1
+    kind: Job
+    name: esclean-28085820
+    namespace: default
+    resourceVersion: "141046967"
+    uid: 3d5f73fa-b647-4d48-b445-cd0b1c565260
+  - apiVersion: batch/v1
+    kind: Job
+    name: esclean-28087260
+    namespace: default
+    resourceVersion: "141638031"
+    uid: 2c04d2e2-75f0-41de-8b75-5f00af4004fe
+  - apiVersion: batch/v1
+    kind: Job
+    name: esclean-28088700
+    namespace: default
+    resourceVersion: "142230134"
+    uid: f7834b90-75e2-4cf7-9125-2098443bcad2
+  - apiVersion: batch/v1
+    kind: Job
+    name: esclean-28090140
+    namespace: default
+    resourceVersion: "142823807"
+    uid: f68fb7ec-3c4e-4b5d-9267-f9942e1d5e13
+  - apiVersion: batch/v1
+    kind: Job
+    name: esclean-28091580
+    namespace: default
+    resourceVersion: "143421752"
+    uid: a0319b83-db99-4bd2-924c-8769abe629aa
+  - apiVersion: batch/v1
+    kind: Job
+    name: esclean-28093020
+    namespace: default
+    resourceVersion: "144016728"
+    uid: e026e471-81f0-41fd-a1c6-e87d66a1026e
+  - apiVersion: batch/v1
+    kind: Job
+    name: esclean-28094460
+    namespace: default
+    resourceVersion: "144612543"
+    uid: ab5b4a4f-1876-4e55-9c4f-6e08c5e3fbc6
+  - apiVersion: batch/v1
+    kind: Job
+    name: esclean-28095900
+    namespace: default
+    resourceVersion: "145208994"
+    uid: d4259085-1467-4dbc-a806-bcf108b29062
+  - apiVersion: batch/v1
+    kind: Job
+    name: esclean-28097340
+    namespace: default
+    resourceVersion: "145806125"
+    uid: 17d9d424-34ea-4bf2-8049-6fa7436a50c7
+  - apiVersion: batch/v1
+    kind: Job
+    name: esclean-28098780
+    namespace: default
+    resourceVersion: "146404267"
+    uid: 0dcb56e8-1132-4614-b47c-b939ab8fca80
+  - apiVersion: batch/v1
+    kind: Job
+    name: esclean-28100220
+    namespace: default
+    resourceVersion: "147003184"
+    uid: 46b2f699-c34c-4157-bdf5-ae6916ba2f00
+  - apiVersion: batch/v1
+    kind: Job
+    name: esclean-28101660
+    namespace: default
+    resourceVersion: "147603025"
+    uid: 5dfd427e-25f3-4874-b199-399da38c51b2
+  - apiVersion: batch/v1
+    kind: Job
+    name: esclean-28103100
+    namespace: default
+    resourceVersion: "148205282"
+    uid: a5c3cd6b-e1c7-4b9c-ac96-f67660516a2a
+  - apiVersion: batch/v1
+    kind: Job
+    name: esclean-28104540
+    namespace: default
+    resourceVersion: "148809370"
+    uid: 6ee768a2-688d-4002-b242-d4d00993004a
+  - apiVersion: batch/v1
+    kind: Job
+    name: esclean-28105980
+    namespace: default
+    resourceVersion: "149411373"
+    uid: 587be2fb-0427-4b01-9fd4-322137e3acae
+  - apiVersion: batch/v1
+    kind: Job
+    name: esclean-28107420
+    namespace: default
+    resourceVersion: "150014530"
+    uid: 23098f0f-0d56-4a9c-9d94-5b143ba156f5
+  - apiVersion: batch/v1
+    kind: Job
+    name: esclean-28108860
+    namespace: default
+    resourceVersion: "150618643"
+    uid: b7fd26ca-6ff4-40b3-afdc-f2be3495d692
+  - apiVersion: batch/v1
+    kind: Job
+    name: esclean-28110300
+    namespace: default
+    resourceVersion: "151225165"
+    uid: 0ae53abb-c37d-4135-853b-6a3c3c773f2b
+  - apiVersion: batch/v1
+    kind: Job
+    name: esclean-28111740
+    namespace: default
+    resourceVersion: "151830822"
+    uid: 48c1b9e9-5aee-42f2-95cb-0ae91c9885af
+  - apiVersion: batch/v1
+    kind: Job
+    name: esclean-28113180
+    namespace: default
+    resourceVersion: "152438789"
+    uid: 8f680837-2702-4f5c-af23-d3e3712d09f0
+  - apiVersion: batch/v1
+    kind: Job
+    name: esclean-28114620
+    namespace: default
+    resourceVersion: "153045568"
+    uid: 53dca9aa-9454-489e-83c8-074e49920a0e
+  - apiVersion: batch/v1
+    kind: Job
+    name: esclean-28116060
+    namespace: default
+    resourceVersion: "153653402"
+    uid: 094df8d2-44de-495d-8f84-d171d7c75cd8
+  - apiVersion: batch/v1
+    kind: Job
+    name: esclean-28117500
+    namespace: default
+    resourceVersion: "154263360"
+    uid: 54952c6e-40d2-46d0-acfd-9bdeb2794c82
+  - apiVersion: batch/v1
+    kind: Job
+    name: esclean-28118940
+    namespace: default
+    resourceVersion: "154873199"
+    uid: 2af60093-af8e-42f2-bf2e-9ed73397a569
+  - apiVersion: batch/v1
+    kind: Job
+    name: esclean-28120380
+    namespace: default
+    resourceVersion: "155484284"
+    uid: 37692c69-1859-40bc-abb1-d7d82935e3eb
+  - apiVersion: batch/v1
+    kind: Job
+    name: esclean-28121820
+    namespace: default
+    resourceVersion: "156096230"
+    uid: c967c32e-cfa7-4629-8342-65472cd107fb
+  - apiVersion: batch/v1
+    kind: Job
+    name: esclean-28123260
+    namespace: default
+    resourceVersion: "156709267"
+    uid: 11e10e61-44cb-432d-b62a-0ae05d3f0c1b
+  - apiVersion: batch/v1
+    kind: Job
+    name: esclean-28124700
+    namespace: default
+    resourceVersion: "157322641"
+    uid: 7a8381ff-4ecc-4318-81ba-bdfc43c68593
+  - apiVersion: batch/v1
+    kind: Job
+    name: esclean-28126140
+    namespace: default
+    resourceVersion: "157936894"
+    uid: ad2abc93-2920-4286-8570-99ab7d7ff770
+  - apiVersion: batch/v1
+    kind: Job
+    name: esclean-28127580
+    namespace: default
+    resourceVersion: "158551938"
+    uid: 6b8bceba-c841-41d8-8889-30e18faebb3d
+  - apiVersion: batch/v1
+    kind: Job
+    name: esclean-28129020
+    namespace: default
+    resourceVersion: "159168069"
+    uid: effce243-a43a-4bc1-b30f-fe35a64b2797
+  - apiVersion: batch/v1
+    kind: Job
+    name: esclean-28130460
+    namespace: default
+    resourceVersion: "159784686"
+    uid: 21588e87-5183-4c3b-bd8c-794dc489668c
+  - apiVersion: batch/v1
+    kind: Job
+    name: esclean-28131900
+    namespace: default
+    resourceVersion: "160402310"
+    uid: 5c0bae81-a284-4aee-83f2-ea86943b77bd
+  - apiVersion: batch/v1
+    kind: Job
+    name: esclean-28133340
+    namespace: default
+    resourceVersion: "161023157"
+    uid: 9b9508cf-8a75-4c68-9a9a-d95eb353563e
+  - apiVersion: batch/v1
+    kind: Job
+    name: esclean-28134780
+    namespace: default
+    resourceVersion: "161644818"
+    uid: 667bc13a-c114-400e-b864-87037428363a
+  - apiVersion: batch/v1
+    kind: Job
+    name: esclean-28136220
+    namespace: default
+    resourceVersion: "162264742"
+    uid: e1e0dd4d-fa30-422f-8351-2d991b516212
+  - apiVersion: batch/v1
+    kind: Job
+    name: esclean-28137660
+    namespace: default
+    resourceVersion: "162885523"
+    uid: e285235e-ebfa-4646-b8a1-8789e8b71433
+  - apiVersion: batch/v1
+    kind: Job
+    name: esclean-28139100
+    namespace: default
+    resourceVersion: "163507154"
+    uid: 4ad2774d-38eb-403a-bfdb-94b861d1293c
+  - apiVersion: batch/v1
+    kind: Job
+    name: esclean-28140540
+    namespace: default
+    resourceVersion: "164142339"
+    uid: 42887b92-96f5-4698-a0d5-13f6325cbdd7
+  - apiVersion: batch/v1
+    kind: Job
+    name: esclean-28141980
+    namespace: default
+    resourceVersion: "164775844"
+    uid: bc16cae0-ca88-4645-9262-308a5a283757
+  - apiVersion: batch/v1
+    kind: Job
+    name: esclean-28143420
+    namespace: default
+    resourceVersion: "165411615"
+    uid: 69d50d27-ac07-4310-b4dd-d4a78dd3e85f
+  - apiVersion: batch/v1
+    kind: Job
+    name: esclean-28144860
+    namespace: default
+    resourceVersion: "166045824"
+    uid: d03a3bc3-f743-48c3-a837-88c069c546ea
+  - apiVersion: batch/v1
+    kind: Job
+    name: esclean-28146300
+    namespace: default
+    resourceVersion: "166685786"
+    uid: 5342f6da-fa48-41cc-b402-1c67ac9c3ff3
+  - apiVersion: batch/v1
+    kind: Job
+    name: esclean-28147740
+    namespace: default
+    resourceVersion: "167329215"
+    uid: 041b0fed-3615-4845-b908-7362edf076ae
+  - apiVersion: batch/v1
+    kind: Job
+    name: esclean-28149180
+    namespace: default
+    resourceVersion: "167967492"
+    uid: a21e75eb-03fe-4f5f-ae4c-f90af2680bb7
+  lastScheduleTime: "2023-09-13T01:00:00Z"
+  lastSuccessfulTime: "2023-09-13T01:00:11Z"

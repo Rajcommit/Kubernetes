@@ -1,0 +1,1851 @@
+requestedfor: jzm4659@reynoldsconsumer.com
+requestor: SaviyntSupportAgent1
+comments: test123
+applicationrequesttype: MODIFY
+applications:
+  - accountAttributes:
+      - attributeName: accountName
+        attributeValue: jzm4659
+        nonEditable: true
+      - attributeKey: 1
+        attributeName: endpointName
+        attributeValue: Active Directory
+        actualEndpointName: ActiveDirectory
+        imageId: AD.png
+      - attributeKey: 1
+        attributeName: securitySystemName
+        attributeValue: Active Directory
+    userAttributes:
+      - attributeName: firstname
+        attributeValue: Jose
+        mandatory: false
+      - attributeName: lastname
+        attributeValue: Motowylak
+        mandatory: false
+      - attributeName: manager
+        attributeValue: Nathan Fields (nzf0647@reynoldsconsumer.com)
+        mandatory: false
+      - attributeName: location
+        attributeValue: 'Louisville, KY'
+        mandatory: false
+      - attributeName: username
+        attributeValue: jzm4659@reynoldsconsumer.com
+        mandatory: true
+      - attributeName: displayname
+        attributeValue: JOSE MOTOWYLAK
+        mandatory: false
+      - attributeName: departmentname
+        attributeValue: Allocable Expenses
+        mandatory: false
+    dynamicAttributes: []
+    entitlementTypes:
+      - startDateWhileRevokeRequest: false
+        allowEntitlementExtension: false
+        hierarchyRequired: false
+        dependentOnEntitlementTypes: {}
+        requiredinrequest: false
+        removeAllEntitlementWhileReq: false
+        displayName: Group
+        endpointKey: 1
+        datesRequired: false
+        description: memberOf  - ActiveDirectory
+        entitlementValues:
+          - showDates: false
+            isExisting: 'true'
+            soxCritical: '0'
+            displayName: Grp_A RCP Accounts
+            name: 'CN=Grp_A RCP Accounts,OU=RC Groups,DC=ReynoldsConsumer,DC=com'
+            description: >-
+              Includes all user accounts with RCP email domain address (or
+              manager) 
+            sysCritical: '0'
+            id: 133982
+            businessJustification: ''
+            businessJustificationMandatory: false
+            entitlementType: memberOf
+            startDate: null
+            ViewName:
+              key: null
+              ref: null
+              props:
+                displayName: Grp_A RCP Accounts
+                description: >-
+                  Includes all user accounts with RCP email domain address (or
+                  manager) 
+              _owner: null
+            checked: false
+            businessJustificationInput:
+              type: {}
+              key: businessJustification133982
+              ref: null
+              props:
+                autoComplete: 'off'
+                type: text
+                defaultValue: ''
+                classes:
+                  root: jss1999
+                  input: jss1999
+                disabled: true
+                disableUnderline: true
+                inputProps:
+                  aria-label: description
+                InputLabelProps:
+                  shrink: true
+                error: false
+                label:
+                  key: null
+                  ref: null
+                  props:
+                    children:
+                      - Business Justification
+                      - false
+                  _owner: null
+              _owner: null
+          - showDates: false
+            isExisting: 'true'
+            soxCritical: '0'
+            displayName: Grp_M South Boston Technical Services Admins
+            name: >-
+              CN=Grp_M South Boston Technical Services Admins,OU=South
+              Boston,OU=File Share Groups,OU=RC
+              Groups,DC=ReynoldsConsumer,DC=com
+            description: >-
+              Grants MODIFY access to the South Boston Technical Services
+              Folder(s)
+            sysCritical: '0'
+            id: 134007
+            businessJustification: ''
+            businessJustificationMandatory: false
+            entitlementType: memberOf
+            startDate: null
+            ViewName:
+              key: null
+              ref: null
+              props:
+                displayName: Grp_M South Boston Technical Services Admins
+                description: >-
+                  Grants MODIFY access to the South Boston Technical Services
+                  Folder(s)
+              _owner: null
+            checked: false
+            businessJustificationInput:
+              type: {}
+              key: businessJustification134007
+              ref: null
+              props:
+                autoComplete: 'off'
+                type: text
+                defaultValue: ''
+                classes:
+                  root: jss1999
+                  input: jss1999
+                disabled: true
+                disableUnderline: true
+                inputProps:
+                  aria-label: description
+                InputLabelProps:
+                  shrink: true
+                error: false
+                label:
+                  key: null
+                  ref: null
+                  props:
+                    children:
+                      - Business Justification
+                      - false
+                  _owner: null
+              _owner: null
+          - showDates: false
+            isExisting: 'true'
+            soxCritical: '0'
+            displayName: Grp_A RCP Employees
+            name: >-
+              CN=Grp_A RCP Employees,OU=ARS Controlled Groups,OU=RC
+              Groups,DC=ReynoldsConsumer,DC=com
+            description: RCP Employees
+            sysCritical: '0'
+            id: 134192
+            businessJustification: ''
+            businessJustificationMandatory: false
+            entitlementType: memberOf
+            startDate: null
+            ViewName:
+              key: null
+              ref: null
+              props:
+                displayName: Grp_A RCP Employees
+                description: RCP Employees
+              _owner: null
+            checked: false
+            businessJustificationInput:
+              type: {}
+              key: businessJustification134192
+              ref: null
+              props:
+                autoComplete: 'off'
+                type: text
+                defaultValue: ''
+                classes:
+                  root: jss1999
+                  input: jss1999
+                disabled: true
+                disableUnderline: true
+                inputProps:
+                  aria-label: description
+                InputLabelProps:
+                  shrink: true
+                error: false
+                label:
+                  key: null
+                  ref: null
+                  props:
+                    children:
+                      - Business Justification
+                      - false
+                  _owner: null
+              _owner: null
+          - showDates: false
+            isExisting: 'true'
+            soxCritical: '0'
+            displayName: App_M Pactiv Learning Management System
+            name: >-
+              CN=App_M Pactiv Learning Management System,OU=ARS Controlled
+              Groups,OU=RC Groups,DC=ReynoldsConsumer,DC=com
+            description: >-
+              NOT USED AT THIS TIME - DO NOT SELECT - Pactiv’s Organizational
+              Development group Learning Management System (LMS) to track
+              employee competencies and progression through various curricula.
+            sysCritical: '0'
+            id: 134289
+            businessJustification: ''
+            businessJustificationMandatory: false
+            entitlementType: memberOf
+            startDate: null
+            ViewName:
+              key: null
+              ref: null
+              props:
+                displayName: App_M Pactiv Learning Management System
+                description: >-
+                  NOT USED AT THIS TIME - DO NOT SELECT - Pactiv’s
+                  Organizational Development group Learning Management System
+                  (LMS) to track employee competencies and progression through
+                  various curricula.
+              _owner: null
+            checked: false
+            businessJustificationInput:
+              type: {}
+              key: businessJustification134289
+              ref: null
+              props:
+                autoComplete: 'off'
+                type: text
+                defaultValue: ''
+                classes:
+                  root: jss1999
+                  input: jss1999
+                disabled: true
+                disableUnderline: true
+                inputProps:
+                  aria-label: description
+                InputLabelProps:
+                  shrink: true
+                error: false
+                label:
+                  key: null
+                  ref: null
+                  props:
+                    children:
+                      - Business Justification
+                      - false
+                  _owner: null
+              _owner: null
+          - showDates: false
+            isExisting: 'true'
+            soxCritical: '0'
+            displayName: Loc_A South Boston VA
+            name: >-
+              CN=Loc_A South Boston VA,OU=ARS Controlled Groups,OU=RC
+              Groups,DC=ReynoldsConsumer,DC=com
+            description: 'Location group for South Boston, VA (RCP-Presto)'
+            sysCritical: '0'
+            id: 134797
+            businessJustification: ''
+            businessJustificationMandatory: false
+            entitlementType: memberOf
+            startDate: null
+            ViewName:
+              key: null
+              ref: null
+              props:
+                displayName: Loc_A South Boston VA
+                description: 'Location group for South Boston, VA (RCP-Presto)'
+              _owner: null
+            checked: false
+            businessJustificationInput:
+              type: {}
+              key: businessJustification134797
+              ref: null
+              props:
+                autoComplete: 'off'
+                type: text
+                defaultValue: ''
+                classes:
+                  root: jss1999
+                  input: jss1999
+                disabled: true
+                disableUnderline: true
+                inputProps:
+                  aria-label: description
+                InputLabelProps:
+                  shrink: true
+                error: false
+                label:
+                  key: null
+                  ref: null
+                  props:
+                    children:
+                      - Business Justification
+                      - false
+                  _owner: null
+              _owner: null
+          - showDates: false
+            isExisting: 'true'
+            soxCritical: '0'
+            displayName: Grp_A Pactiv Hourly
+            name: >-
+              CN=Grp_A Pactiv Hourly,OU=ARS Controlled Groups,OU=RC
+              Groups,DC=ReynoldsConsumer,DC=com
+            description: Hourly employees fed from payroll
+            sysCritical: '0'
+            id: 134922
+            businessJustification: ''
+            businessJustificationMandatory: false
+            entitlementType: memberOf
+            startDate: null
+            ViewName:
+              key: null
+              ref: null
+              props:
+                displayName: Grp_A Pactiv Hourly
+                description: Hourly employees fed from payroll
+              _owner: null
+            checked: false
+            businessJustificationInput:
+              type: {}
+              key: businessJustification134922
+              ref: null
+              props:
+                autoComplete: 'off'
+                type: text
+                defaultValue: ''
+                classes:
+                  root: jss1999
+                  input: jss1999
+                disabled: true
+                disableUnderline: true
+                inputProps:
+                  aria-label: description
+                InputLabelProps:
+                  shrink: true
+                error: false
+                label:
+                  key: null
+                  ref: null
+                  props:
+                    children:
+                      - Business Justification
+                      - false
+                  _owner: null
+              _owner: null
+          - showDates: false
+            isExisting: 'true'
+            soxCritical: '0'
+            displayName: DL RCP South Boston VA
+            name: >-
+              CN=DL RCP South Boston VA,OU=ARS Dynamic,OU=DLs,OU=RC Exchange
+              Objects,DC=ReynoldsConsumer,DC=com
+            description: null
+            sysCritical: '0'
+            id: 135098
+            businessJustification: ''
+            businessJustificationMandatory: false
+            entitlementType: memberOf
+            startDate: null
+            ViewName:
+              key: null
+              ref: null
+              props:
+                displayName: DL RCP South Boston VA
+                description: null
+              _owner: null
+            checked: false
+            businessJustificationInput:
+              type: {}
+              key: businessJustification135098
+              ref: null
+              props:
+                autoComplete: 'off'
+                type: text
+                defaultValue: ''
+                classes:
+                  root: jss1999
+                  input: jss1999
+                disabled: true
+                disableUnderline: true
+                inputProps:
+                  aria-label: description
+                InputLabelProps:
+                  shrink: true
+                error: false
+                label:
+                  key: null
+                  ref: null
+                  props:
+                    children:
+                      - Business Justification
+                      - false
+                  _owner: null
+              _owner: null
+          - showDates: false
+            isExisting: 'true'
+            soxCritical: '0'
+            displayName: DL RCP Presto All
+            name: >-
+              CN=DL RCP Presto All,OU=ARS Dynamic,OU=DLs,OU=RC Exchange
+              Objects,DC=ReynoldsConsumer,DC=com
+            description: null
+            sysCritical: '0'
+            id: 135220
+            businessJustification: ''
+            businessJustificationMandatory: false
+            entitlementType: memberOf
+            startDate: null
+            ViewName:
+              key: null
+              ref: null
+              props:
+                displayName: DL RCP Presto All
+                description: null
+              _owner: null
+            checked: false
+            businessJustificationInput:
+              type: {}
+              key: businessJustification135220
+              ref: null
+              props:
+                autoComplete: 'off'
+                type: text
+                defaultValue: ''
+                classes:
+                  root: jss1999
+                  input: jss1999
+                disabled: true
+                disableUnderline: true
+                inputProps:
+                  aria-label: description
+                InputLabelProps:
+                  shrink: true
+                error: false
+                label:
+                  key: null
+                  ref: null
+                  props:
+                    children:
+                      - Business Justification
+                      - false
+                  _owner: null
+              _owner: null
+          - showDates: false
+            isExisting: 'true'
+            soxCritical: '0'
+            displayName: Grp_A All User Accounts
+            name: >-
+              CN=Grp_A All User Accounts,OU=ARS Controlled Groups,OU=RC
+              Groups,DC=ReynoldsConsumer,DC=com
+            description: All User Accounts
+            sysCritical: '0'
+            id: 135362
+            businessJustification: ''
+            businessJustificationMandatory: false
+            entitlementType: memberOf
+            startDate: null
+            ViewName:
+              key: null
+              ref: null
+              props:
+                displayName: Grp_A All User Accounts
+                description: All User Accounts
+              _owner: null
+            checked: false
+            businessJustificationInput:
+              type: {}
+              key: businessJustification135362
+              ref: null
+              props:
+                autoComplete: 'off'
+                type: text
+                defaultValue: ''
+                classes:
+                  root: jss1999
+                  input: jss1999
+                disabled: true
+                disableUnderline: true
+                inputProps:
+                  aria-label: description
+                InputLabelProps:
+                  shrink: true
+                error: false
+                label:
+                  key: null
+                  ref: null
+                  props:
+                    children:
+                      - Business Justification
+                      - false
+                  _owner: null
+              _owner: null
+          - showDates: false
+            isExisting: 'true'
+            soxCritical: '0'
+            displayName: App_A Maintenance Connection
+            name: >-
+              CN=App_A Maintenance Connection,OU=ARS Controlled Groups,OU=RC
+              Groups,DC=ReynoldsConsumer,DC=com
+            description: controls Maintenance Connection application web access
+            sysCritical: '0'
+            id: 135519
+            businessJustification: ''
+            businessJustificationMandatory: false
+            entitlementType: memberOf
+            startDate: null
+            ViewName:
+              key: null
+              ref: null
+              props:
+                displayName: App_A Maintenance Connection
+                description: controls Maintenance Connection application web access
+              _owner: null
+            checked: false
+            businessJustificationInput:
+              type: {}
+              key: businessJustification135519
+              ref: null
+              props:
+                autoComplete: 'off'
+                type: text
+                defaultValue: ''
+                classes:
+                  root: jss1999
+                  input: jss1999
+                disabled: true
+                disableUnderline: true
+                inputProps:
+                  aria-label: description
+                InputLabelProps:
+                  shrink: true
+                error: false
+                label:
+                  key: null
+                  ref: null
+                  props:
+                    children:
+                      - Business Justification
+                      - false
+                  _owner: null
+              _owner: null
+          - showDates: false
+            isExisting: 'true'
+            soxCritical: '0'
+            displayName: App_M Maintenance Connection General South Boston VA
+            name: >-
+              CN=App_M Maintenance Connection General South Boston
+              VA,OU=App_MaintenanceConnection,OU=Application Groups,OU=RC
+              Groups,DC=ReynoldsConsumer,DC=com
+            description: Maintenance Connection General South Boston VA
+            sysCritical: '0'
+            id: 135718
+            businessJustification: ''
+            businessJustificationMandatory: false
+            entitlementType: memberOf
+            startDate: null
+            ViewName:
+              key: null
+              ref: null
+              props:
+                displayName: App_M Maintenance Connection General South Boston VA
+                description: Maintenance Connection General South Boston VA
+              _owner: null
+            checked: false
+            businessJustificationInput:
+              type: {}
+              key: businessJustification135718
+              ref: null
+              props:
+                autoComplete: 'off'
+                type: text
+                defaultValue: ''
+                classes:
+                  root: jss1999
+                  input: jss1999
+                disabled: true
+                disableUnderline: true
+                inputProps:
+                  aria-label: description
+                InputLabelProps:
+                  shrink: true
+                error: false
+                label:
+                  key: null
+                  ref: null
+                  props:
+                    children:
+                      - Business Justification
+                      - false
+                  _owner: null
+              _owner: null
+          - showDates: false
+            isExisting: 'true'
+            soxCritical: '0'
+            displayName: App_A All Maintenance Connection Users
+            name: >-
+              CN=App_A All Maintenance Connection
+              Users,OU=App_MaintenanceConnection,OU=Application Groups,OU=RC
+              Groups,DC=ReynoldsConsumer,DC=com
+            description: populated by script from all App_M Maintenance groups
+            sysCritical: '0'
+            id: 135732
+            businessJustification: ''
+            businessJustificationMandatory: false
+            entitlementType: memberOf
+            startDate: null
+            ViewName:
+              key: null
+              ref: null
+              props:
+                displayName: App_A All Maintenance Connection Users
+                description: populated by script from all App_M Maintenance groups
+              _owner: null
+            checked: false
+            businessJustificationInput:
+              type: {}
+              key: businessJustification135732
+              ref: null
+              props:
+                autoComplete: 'off'
+                type: text
+                defaultValue: ''
+                classes:
+                  root: jss1999
+                  input: jss1999
+                disabled: true
+                disableUnderline: true
+                inputProps:
+                  aria-label: description
+                InputLabelProps:
+                  shrink: true
+                error: false
+                label:
+                  key: null
+                  ref: null
+                  props:
+                    children:
+                      - Business Justification
+                      - false
+                  _owner: null
+              _owner: null
+          - showDates: false
+            isExisting: 'true'
+            soxCritical: '0'
+            displayName: DL RCP all with reynoldsbrands mail
+            name: >-
+              CN=DL RCP all with reynoldsbrands mail,OU=ARS Dynamic,OU=DLs,OU=RC
+              Exchange Objects,DC=ReynoldsConsumer,DC=com
+            description: null
+            sysCritical: '0'
+            id: 136032
+            businessJustification: ''
+            businessJustificationMandatory: false
+            entitlementType: memberOf
+            startDate: null
+            ViewName:
+              key: null
+              ref: null
+              props:
+                displayName: DL RCP all with reynoldsbrands mail
+                description: null
+              _owner: null
+            checked: false
+            businessJustificationInput:
+              type: {}
+              key: businessJustification136032
+              ref: null
+              props:
+                autoComplete: 'off'
+                type: text
+                defaultValue: ''
+                classes:
+                  root: jss1999
+                  input: jss1999
+                disabled: true
+                disableUnderline: true
+                inputProps:
+                  aria-label: description
+                InputLabelProps:
+                  shrink: true
+                error: false
+                label:
+                  key: null
+                  ref: null
+                  props:
+                    children:
+                      - Business Justification
+                      - false
+                  _owner: null
+              _owner: null
+          - showDates: false
+            isExisting: 'true'
+            soxCritical: '0'
+            displayName: Grp_A Pactiv All
+            name: >-
+              CN=Grp_A Pactiv All,OU=ARS Controlled Groups,OU=RC
+              Groups,DC=ReynoldsConsumer,DC=com
+            description: Pactiv Employees Only (No Partners/Contractors)
+            sysCritical: '0'
+            id: 136601
+            businessJustification: ''
+            businessJustificationMandatory: false
+            entitlementType: memberOf
+            startDate: null
+            ViewName:
+              key: null
+              ref: null
+              props:
+                displayName: Grp_A Pactiv All
+                description: Pactiv Employees Only (No Partners/Contractors)
+              _owner: null
+            checked: false
+            businessJustificationInput:
+              type: {}
+              key: businessJustification136601
+              ref: null
+              props:
+                autoComplete: 'off'
+                type: text
+                defaultValue: ''
+                classes:
+                  root: jss1999
+                  input: jss1999
+                disabled: true
+                disableUnderline: true
+                inputProps:
+                  aria-label: description
+                InputLabelProps:
+                  shrink: true
+                error: false
+                label:
+                  key: null
+                  ref: null
+                  props:
+                    children:
+                      - Business Justification
+                      - false
+                  _owner: null
+              _owner: null
+          - showDates: false
+            isExisting: 'true'
+            soxCritical: '0'
+            displayName: Grp_A ReynoldsBrands e-mail address
+            name: >-
+              CN=Grp_A ReynoldsBrands e-mail address,OU=ARS Controlled
+              Groups,OU=RC Groups,DC=ReynoldsConsumer,DC=com
+            description: 'Users with primary SMTP domain: ReynoldsBrands.com'
+            sysCritical: '0'
+            id: 136644
+            businessJustification: ''
+            businessJustificationMandatory: false
+            entitlementType: memberOf
+            startDate: null
+            ViewName:
+              key: null
+              ref: null
+              props:
+                displayName: Grp_A ReynoldsBrands e-mail address
+                description: 'Users with primary SMTP domain: ReynoldsBrands.com'
+              _owner: null
+            checked: false
+            businessJustificationInput:
+              type: {}
+              key: businessJustification136644
+              ref: null
+              props:
+                autoComplete: 'off'
+                type: text
+                defaultValue: ''
+                classes:
+                  root: jss1999
+                  input: jss1999
+                disabled: true
+                disableUnderline: true
+                inputProps:
+                  aria-label: description
+                InputLabelProps:
+                  shrink: true
+                error: false
+                label:
+                  key: null
+                  ref: null
+                  props:
+                    children:
+                      - Business Justification
+                      - false
+                  _owner: null
+              _owner: null
+          - showDates: false
+            isExisting: 'true'
+            soxCritical: '0'
+            displayName: App_A Office Communicator Users
+            name: >-
+              CN=App_A Office Communicator Users,OU=ARS Controlled Groups,OU=RC
+              Groups,DC=ReynoldsConsumer,DC=com
+            description: Contains all OCS provisioned users
+            sysCritical: '0'
+            id: 136747
+            businessJustification: ''
+            businessJustificationMandatory: false
+            entitlementType: memberOf
+            startDate: null
+            ViewName:
+              key: null
+              ref: null
+              props:
+                displayName: App_A Office Communicator Users
+                description: Contains all OCS provisioned users
+              _owner: null
+            checked: false
+            businessJustificationInput:
+              type: {}
+              key: businessJustification136747
+              ref: null
+              props:
+                autoComplete: 'off'
+                type: text
+                defaultValue: ''
+                classes:
+                  root: jss1999
+                  input: jss1999
+                disabled: true
+                disableUnderline: true
+                inputProps:
+                  aria-label: description
+                InputLabelProps:
+                  shrink: true
+                error: false
+                label:
+                  key: null
+                  ref: null
+                  props:
+                    children:
+                      - Business Justification
+                      - false
+                  _owner: null
+              _owner: null
+          - showDates: false
+            isExisting: 'true'
+            soxCritical: '0'
+            displayName: Grp_A ADP All
+            name: >-
+              CN=Grp_A ADP All,OU=ARS Controlled Groups,OU=RC
+              Groups,DC=ReynoldsConsumer,DC=com
+            description: all accounts linked to ADP
+            sysCritical: '0'
+            id: 137256
+            businessJustification: ''
+            businessJustificationMandatory: false
+            entitlementType: memberOf
+            startDate: null
+            ViewName:
+              key: null
+              ref: null
+              props:
+                displayName: Grp_A ADP All
+                description: all accounts linked to ADP
+              _owner: null
+            checked: false
+            businessJustificationInput:
+              type: {}
+              key: businessJustification137256
+              ref: null
+              props:
+                autoComplete: 'off'
+                type: text
+                defaultValue: ''
+                classes:
+                  root: jss1999
+                  input: jss1999
+                disabled: true
+                disableUnderline: true
+                inputProps:
+                  aria-label: description
+                InputLabelProps:
+                  shrink: true
+                error: false
+                label:
+                  key: null
+                  ref: null
+                  props:
+                    children:
+                      - Business Justification
+                      - false
+                  _owner: null
+              _owner: null
+          - showDates: false
+            isExisting: 'true'
+            soxCritical: '0'
+            displayName: Grp_A Presto All
+            name: >-
+              CN=Grp_A Presto All,OU=ARS Controlled Groups,OU=RC
+              Groups,DC=ReynoldsConsumer,DC=com
+            description: All Presto employees
+            sysCritical: '0'
+            id: 137553
+            businessJustification: ''
+            businessJustificationMandatory: false
+            entitlementType: memberOf
+            startDate: null
+            ViewName:
+              key: null
+              ref: null
+              props:
+                displayName: Grp_A Presto All
+                description: All Presto employees
+              _owner: null
+            checked: false
+            businessJustificationInput:
+              type: {}
+              key: businessJustification137553
+              ref: null
+              props:
+                autoComplete: 'off'
+                type: text
+                defaultValue: ''
+                classes:
+                  root: jss1999
+                  input: jss1999
+                disabled: true
+                disableUnderline: true
+                inputProps:
+                  aria-label: description
+                InputLabelProps:
+                  shrink: true
+                error: false
+                label:
+                  key: null
+                  ref: null
+                  props:
+                    children:
+                      - Business Justification
+                      - false
+                  _owner: null
+              _owner: null
+          - showDates: false
+            isExisting: 'true'
+            soxCritical: '0'
+            displayName: App_M Outlook Users
+            name: 'CN=App_M Outlook Users,OU=RC Groups,DC=ReynoldsConsumer,DC=com'
+            description: Group used to request Outlook Mailbox (email).
+            sysCritical: '0'
+            id: 137560
+            businessJustification: ''
+            businessJustificationMandatory: false
+            entitlementType: memberOf
+            startDate: null
+            ViewName:
+              key: null
+              ref: null
+              props:
+                displayName: App_M Outlook Users
+                description: Group used to request Outlook Mailbox (email).
+              _owner: null
+            checked: false
+            businessJustificationInput:
+              type: {}
+              key: businessJustification137560
+              ref: null
+              props:
+                autoComplete: 'off'
+                type: text
+                defaultValue: ''
+                classes:
+                  root: jss1999
+                  input: jss1999
+                disabled: true
+                disableUnderline: true
+                inputProps:
+                  aria-label: description
+                InputLabelProps:
+                  shrink: true
+                error: false
+                label:
+                  key: null
+                  ref: null
+                  props:
+                    children:
+                      - Business Justification
+                      - false
+                  _owner: null
+              _owner: null
+          - showDates: false
+            isExisting: 'true'
+            soxCritical: '0'
+            displayName: DL RCP Employees
+            name: >-
+              CN=DL RCP Employees,OU=ARS Dynamic,OU=DLs,OU=RC Exchange
+              Objects,DC=ReynoldsConsumer,DC=com
+            description: null
+            sysCritical: '0'
+            id: 137929
+            businessJustification: ''
+            businessJustificationMandatory: false
+            entitlementType: memberOf
+            startDate: null
+            ViewName:
+              key: null
+              ref: null
+              props:
+                displayName: DL RCP Employees
+                description: null
+              _owner: null
+            checked: false
+            businessJustificationInput:
+              type: {}
+              key: businessJustification137929
+              ref: null
+              props:
+                autoComplete: 'off'
+                type: text
+                defaultValue: ''
+                classes:
+                  root: jss1999
+                  input: jss1999
+                disabled: true
+                disableUnderline: true
+                inputProps:
+                  aria-label: description
+                InputLabelProps:
+                  shrink: true
+                error: false
+                label:
+                  key: null
+                  ref: null
+                  props:
+                    children:
+                      - Business Justification
+                      - false
+                  _owner: null
+              _owner: null
+          - showDates: false
+            isExisting: 'true'
+            soxCritical: '0'
+            displayName: App_M Azure Tenant E1 License
+            name: >-
+              CN=App_M Azure Tenant E1 License,OU=Azure,OU=RC
+              Groups,DC=ReynoldsConsumer,DC=com
+            description: Azure Tenant E1 core license
+            sysCritical: '0'
+            id: 138096
+            businessJustification: ''
+            businessJustificationMandatory: false
+            entitlementType: memberOf
+            startDate: null
+            ViewName:
+              key: null
+              ref: null
+              props:
+                displayName: App_M Azure Tenant E1 License
+                description: Azure Tenant E1 core license
+              _owner: null
+            checked: false
+            businessJustificationInput:
+              type: {}
+              key: businessJustification138096
+              ref: null
+              props:
+                autoComplete: 'off'
+                type: text
+                defaultValue: ''
+                classes:
+                  root: jss1999
+                  input: jss1999
+                disabled: true
+                disableUnderline: true
+                inputProps:
+                  aria-label: description
+                InputLabelProps:
+                  shrink: true
+                error: false
+                label:
+                  key: null
+                  ref: null
+                  props:
+                    children:
+                      - Business Justification
+                      - false
+                  _owner: null
+              _owner: null
+          - showDates: false
+            isExisting: 'true'
+            soxCritical: '0'
+            displayName: Grp_A all with reynoldsbrands mail
+            name: >-
+              CN=Grp_A all with reynoldsbrands mail,OU=ARS Controlled
+              Groups,OU=RC Groups,DC=ReynoldsConsumer,DC=com
+            description: Contains users with reynolds emails
+            sysCritical: '0'
+            id: 138322
+            businessJustification: ''
+            businessJustificationMandatory: false
+            entitlementType: memberOf
+            startDate: null
+            ViewName:
+              key: null
+              ref: null
+              props:
+                displayName: Grp_A all with reynoldsbrands mail
+                description: Contains users with reynolds emails
+              _owner: null
+            checked: false
+            businessJustificationInput:
+              type: {}
+              key: businessJustification138322
+              ref: null
+              props:
+                autoComplete: 'off'
+                type: text
+                defaultValue: ''
+                classes:
+                  root: jss1999
+                  input: jss1999
+                disabled: true
+                disableUnderline: true
+                inputProps:
+                  aria-label: description
+                InputLabelProps:
+                  shrink: true
+                error: false
+                label:
+                  key: null
+                  ref: null
+                  props:
+                    children:
+                      - Business Justification
+                      - false
+                  _owner: null
+              _owner: null
+          - showDates: false
+            isExisting: 'true'
+            soxCritical: '0'
+            displayName: Grp_A All PVMSD With internal email
+            name: >-
+              CN=Grp_A All PVMSD With internal email,OU=ARS Controlled
+              Groups,OU=RC Groups,DC=ReynoldsConsumer,DC=com
+            description: all PVMSD accounts with internal email
+            sysCritical: '0'
+            id: 139568
+            businessJustification: ''
+            businessJustificationMandatory: false
+            entitlementType: memberOf
+            startDate: null
+            ViewName:
+              key: null
+              ref: null
+              props:
+                displayName: Grp_A All PVMSD With internal email
+                description: all PVMSD accounts with internal email
+              _owner: null
+            checked: false
+            businessJustificationInput:
+              type: {}
+              key: businessJustification139568
+              ref: null
+              props:
+                autoComplete: 'off'
+                type: text
+                defaultValue: ''
+                classes:
+                  root: jss1999
+                  input: jss1999
+                disabled: true
+                disableUnderline: true
+                inputProps:
+                  aria-label: description
+                InputLabelProps:
+                  shrink: true
+                error: false
+                label:
+                  key: null
+                  ref: null
+                  props:
+                    children:
+                      - Business Justification
+                      - false
+                  _owner: null
+              _owner: null
+          - showDates: false
+            isExisting: 'true'
+            soxCritical: '0'
+            displayName: Grp_A PVMSD Less Fram Group
+            name: >-
+              CN=Grp_A PVMSD Less Fram Group,OU=ARS Controlled Groups,OU=RC
+              Groups,DC=ReynoldsConsumer,DC=com
+            description: PVMSD Less Fram Group
+            sysCritical: '0'
+            id: 139832
+            businessJustification: ''
+            businessJustificationMandatory: false
+            entitlementType: memberOf
+            startDate: null
+            ViewName:
+              key: null
+              ref: null
+              props:
+                displayName: Grp_A PVMSD Less Fram Group
+                description: PVMSD Less Fram Group
+              _owner: null
+            checked: false
+            businessJustificationInput:
+              type: {}
+              key: businessJustification139832
+              ref: null
+              props:
+                autoComplete: 'off'
+                type: text
+                defaultValue: ''
+                classes:
+                  root: jss1999
+                  input: jss1999
+                disabled: true
+                disableUnderline: true
+                inputProps:
+                  aria-label: description
+                InputLabelProps:
+                  shrink: true
+                error: false
+                label:
+                  key: null
+                  ref: null
+                  props:
+                    children:
+                      - Business Justification
+                      - false
+                  _owner: null
+              _owner: null
+          - showDates: false
+            isExisting: 'true'
+            soxCritical: '0'
+            displayName: Grp_A Pactiv SAP US
+            name: >-
+              CN=Grp_A Pactiv SAP US,OU=ARS Controlled Groups,OU=RC
+              Groups,DC=ReynoldsConsumer,DC=com
+            description: 'All SAP in US [Excluding Fram Group]'
+            sysCritical: '0'
+            id: 139936
+            businessJustification: ''
+            businessJustificationMandatory: false
+            entitlementType: memberOf
+            startDate: null
+            ViewName:
+              key: null
+              ref: null
+              props:
+                displayName: Grp_A Pactiv SAP US
+                description: 'All SAP in US [Excluding Fram Group]'
+              _owner: null
+            checked: false
+            businessJustificationInput:
+              type: {}
+              key: businessJustification139936
+              ref: null
+              props:
+                autoComplete: 'off'
+                type: text
+                defaultValue: ''
+                classes:
+                  root: jss1999
+                  input: jss1999
+                disabled: true
+                disableUnderline: true
+                inputProps:
+                  aria-label: description
+                InputLabelProps:
+                  shrink: true
+                error: false
+                label:
+                  key: null
+                  ref: null
+                  props:
+                    children:
+                      - Business Justification
+                      - false
+                  _owner: null
+              _owner: null
+          - showDates: false
+            isExisting: 'true'
+            soxCritical: '0'
+            displayName: Grp_A Pactiv Public
+            name: >-
+              CN=Grp_A Pactiv Public,OU=ARS Controlled Groups,OU=RC
+              Groups,DC=ReynoldsConsumer,DC=com
+            description: 'All users + Contractors + Sales '
+            sysCritical: '0'
+            id: 140238
+            businessJustification: ''
+            businessJustificationMandatory: false
+            entitlementType: memberOf
+            startDate: null
+            ViewName:
+              key: null
+              ref: null
+              props:
+                displayName: Grp_A Pactiv Public
+                description: 'All users + Contractors + Sales '
+              _owner: null
+            checked: false
+            businessJustificationInput:
+              type: {}
+              key: businessJustification140238
+              ref: null
+              props:
+                autoComplete: 'off'
+                type: text
+                defaultValue: ''
+                classes:
+                  root: jss1999
+                  input: jss1999
+                disabled: true
+                disableUnderline: true
+                inputProps:
+                  aria-label: description
+                InputLabelProps:
+                  shrink: true
+                error: false
+                label:
+                  key: null
+                  ref: null
+                  props:
+                    children:
+                      - Business Justification
+                      - false
+                  _owner: null
+              _owner: null
+          - showDates: false
+            isExisting: 'true'
+            soxCritical: '0'
+            displayName: DL RGHL - RCP - PFS - RLS Users
+            name: >-
+              CN=DL RGHL - RCP - PFS - RLS Users,OU=ARS Controlled Groups,OU=RC
+              Groups,DC=ReynoldsConsumer,DC=com
+            description: null
+            sysCritical: '0'
+            id: 141331
+            businessJustification: ''
+            businessJustificationMandatory: false
+            entitlementType: memberOf
+            startDate: null
+            ViewName:
+              key: null
+              ref: null
+              props:
+                displayName: DL RGHL - RCP - PFS - RLS Users
+                description: null
+              _owner: null
+            checked: false
+            businessJustificationInput:
+              type: {}
+              key: businessJustification141331
+              ref: null
+              props:
+                autoComplete: 'off'
+                type: text
+                defaultValue: ''
+                classes:
+                  root: jss1999
+                  input: jss1999
+                disabled: true
+                disableUnderline: true
+                inputProps:
+                  aria-label: description
+                InputLabelProps:
+                  shrink: true
+                error: false
+                label:
+                  key: null
+                  ref: null
+                  props:
+                    children:
+                      - Business Justification
+                      - false
+                  _owner: null
+              _owner: null
+          - showDates: false
+            isExisting: 'true'
+            soxCritical: '0'
+            displayName: Org_A Presto
+            name: >-
+              CN=Org_A Presto,OU=ARS Controlled Groups,OU=RC
+              Groups,DC=ReynoldsConsumer,DC=com
+            description: Includes all at Presto locations
+            sysCritical: '0'
+            id: 141603
+            businessJustification: ''
+            businessJustificationMandatory: false
+            entitlementType: memberOf
+            startDate: null
+            ViewName:
+              key: null
+              ref: null
+              props:
+                displayName: Org_A Presto
+                description: Includes all at Presto locations
+              _owner: null
+            checked: false
+            businessJustificationInput:
+              type: {}
+              key: businessJustification141603
+              ref: null
+              props:
+                autoComplete: 'off'
+                type: text
+                defaultValue: ''
+                classes:
+                  root: jss1999
+                  input: jss1999
+                disabled: true
+                disableUnderline: true
+                inputProps:
+                  aria-label: description
+                InputLabelProps:
+                  shrink: true
+                error: false
+                label:
+                  key: null
+                  ref: null
+                  props:
+                    children:
+                      - Business Justification
+                      - false
+                  _owner: null
+              _owner: null
+          - showDates: false
+            isExisting: 'true'
+            soxCritical: '0'
+            displayName: Grp_A Exchange Client Users
+            name: >-
+              CN=Grp_A Exchange Client Users,OU=ARS Controlled Groups,OU=RC
+              Groups,DC=ReynoldsConsumer,DC=com
+            description: Contains Exchange users that have designated desktops.
+            sysCritical: '0'
+            id: 141659
+            businessJustification: ''
+            businessJustificationMandatory: false
+            entitlementType: memberOf
+            startDate: null
+            ViewName:
+              key: null
+              ref: null
+              props:
+                displayName: Grp_A Exchange Client Users
+                description: Contains Exchange users that have designated desktops.
+              _owner: null
+            checked: false
+            businessJustificationInput:
+              type: {}
+              key: businessJustification141659
+              ref: null
+              props:
+                autoComplete: 'off'
+                type: text
+                defaultValue: ''
+                classes:
+                  root: jss1999
+                  input: jss1999
+                disabled: true
+                disableUnderline: true
+                inputProps:
+                  aria-label: description
+                InputLabelProps:
+                  shrink: true
+                error: false
+                label:
+                  key: null
+                  ref: null
+                  props:
+                    children:
+                      - Business Justification
+                      - false
+                  _owner: null
+              _owner: null
+          - showDates: false
+            isExisting: 'true'
+            soxCritical: '0'
+            displayName: Grp_A PVMSD Users
+            name: 'CN=Grp_A PVMSD Users,OU=RC Groups,DC=ReynoldsConsumer,DC=com'
+            description: User Accounts with First and Last names and expiring password
+            sysCritical: '0'
+            id: 141679
+            businessJustification: ''
+            businessJustificationMandatory: false
+            entitlementType: memberOf
+            startDate: null
+            ViewName:
+              key: null
+              ref: null
+              props:
+                displayName: Grp_A PVMSD Users
+                description: User Accounts with First and Last names and expiring password
+              _owner: null
+            checked: false
+            businessJustificationInput:
+              type: {}
+              key: businessJustification141679
+              ref: null
+              props:
+                autoComplete: 'off'
+                type: text
+                defaultValue: ''
+                classes:
+                  root: jss1999
+                  input: jss1999
+                disabled: true
+                disableUnderline: true
+                inputProps:
+                  aria-label: description
+                InputLabelProps:
+                  shrink: true
+                error: false
+                label:
+                  key: null
+                  ref: null
+                  props:
+                    children:
+                      - Business Justification
+                      - false
+                  _owner: null
+              _owner: null
+          - showDates: false
+            isExisting: 'true'
+            soxCritical: '0'
+            displayName: Grp_M Exchange Client Users
+            name: >-
+              CN=Grp_M Exchange Client Users,OU=Exchange 2010,OU=RC
+              Groups,DC=ReynoldsConsumer,DC=com
+            description: >-
+              This group allows Outlook to open on a non-standardly named
+              computer (this group does NOT provide an email address). Email
+              group needed:  "Outlook Users"
+            sysCritical: '0'
+            id: 141685
+            businessJustification: ''
+            businessJustificationMandatory: false
+            entitlementType: memberOf
+            startDate: null
+            ViewName:
+              key: null
+              ref: null
+              props:
+                displayName: Grp_M Exchange Client Users
+                description: >-
+                  This group allows Outlook to open on a non-standardly named
+                  computer (this group does NOT provide an email address). Email
+                  group needed:  "Outlook Users"
+              _owner: null
+            checked: false
+            businessJustificationInput:
+              type: {}
+              key: businessJustification141685
+              ref: null
+              props:
+                autoComplete: 'off'
+                type: text
+                defaultValue: ''
+                classes:
+                  root: jss1999
+                  input: jss1999
+                disabled: true
+                disableUnderline: true
+                inputProps:
+                  aria-label: description
+                InputLabelProps:
+                  shrink: true
+                error: false
+                label:
+                  key: null
+                  ref: null
+                  props:
+                    children:
+                      - Business Justification
+                      - false
+                  _owner: null
+              _owner: null
+          - showDates: false
+            isExisting: 'true'
+            soxCritical: '0'
+            displayName: Grp_A RGHL Partners not Contractors
+            name: >-
+              CN=Grp_A RGHL Partners not Contractors,OU=ARS Controlled
+              Groups,OU=RC Groups,DC=ReynoldsConsumer,DC=com
+            description: Include all RGHL partners that are not Contractors
+            sysCritical: '0'
+            id: 141722
+            businessJustification: ''
+            businessJustificationMandatory: false
+            entitlementType: memberOf
+            startDate: null
+            ViewName:
+              key: null
+              ref: null
+              props:
+                displayName: Grp_A RGHL Partners not Contractors
+                description: Include all RGHL partners that are not Contractors
+              _owner: null
+            checked: false
+            businessJustificationInput:
+              type: {}
+              key: businessJustification141722
+              ref: null
+              props:
+                autoComplete: 'off'
+                type: text
+                defaultValue: ''
+                classes:
+                  root: jss1999
+                  input: jss1999
+                disabled: true
+                disableUnderline: true
+                inputProps:
+                  aria-label: description
+                InputLabelProps:
+                  shrink: true
+                error: false
+                label:
+                  key: null
+                  ref: null
+                  props:
+                    children:
+                      - Business Justification
+                      - false
+                  _owner: null
+              _owner: null
+          - showDates: false
+            isExisting: 'true'
+            soxCritical: '0'
+            displayName: DL RCP Breaking News
+            name: >-
+              CN=DL RCP Breaking News,OU=DLs,OU=RC Exchange
+              Objects,DC=ReynoldsConsumer,DC=com
+            description: null
+            sysCritical: '0'
+            id: 142005
+            businessJustification: ''
+            businessJustificationMandatory: false
+            entitlementType: memberOf
+            startDate: null
+            ViewName:
+              key: null
+              ref: null
+              props:
+                displayName: DL RCP Breaking News
+                description: null
+              _owner: null
+            checked: false
+            businessJustificationInput:
+              type: {}
+              key: businessJustification142005
+              ref: null
+              props:
+                autoComplete: 'off'
+                type: text
+                defaultValue: ''
+                classes:
+                  root: jss1999
+                  input: jss1999
+                disabled: true
+                disableUnderline: true
+                inputProps:
+                  aria-label: description
+                InputLabelProps:
+                  shrink: true
+                error: false
+                label:
+                  key: null
+                  ref: null
+                  props:
+                    children:
+                      - Business Justification
+                      - false
+                  _owner: null
+              _owner: null
+          - showDates: false
+            isExisting: 'true'
+            soxCritical: '0'
+            displayName: AD P DesktopPolicy-DCP0
+            name: >-
+              CN=AD P DesktopPolicy-DCP0,OU=ARS Controlled Groups,OU=RC
+              Groups,DC=ReynoldsConsumer,DC=com
+            description: Users - Desktop Policy Lockdown - DCP0
+            sysCritical: '0'
+            id: 142026
+            businessJustification: ''
+            businessJustificationMandatory: false
+            entitlementType: memberOf
+            startDate: null
+            ViewName:
+              key: null
+              ref: null
+              props:
+                displayName: AD P DesktopPolicy-DCP0
+                description: Users - Desktop Policy Lockdown - DCP0
+              _owner: null
+            checked: false
+            businessJustificationInput:
+              type: {}
+              key: businessJustification142026
+              ref: null
+              props:
+                autoComplete: 'off'
+                type: text
+                defaultValue: ''
+                classes:
+                  root: jss1999
+                  input: jss1999
+                disabled: true
+                disableUnderline: true
+                inputProps:
+                  aria-label: description
+                InputLabelProps:
+                  shrink: true
+                error: false
+                label:
+                  key: null
+                  ref: null
+                  props:
+                    children:
+                      - Business Justification
+                      - false
+                  _owner: null
+              _owner: null
+          - showDates: false
+            isExisting: 'true'
+            soxCritical: '0'
+            displayName: Grp_M Desktop Policy DCP0
+            name: >-
+              CN=Grp_M Desktop Policy DCP0,OU=RC
+              Groups,DC=ReynoldsConsumer,DC=com
+            description: Manual group for Users - Desktop Policy Permitted – DCP0
+            sysCritical: '0'
+            id: 1397606
+            businessJustification: ''
+            businessJustificationMandatory: false
+            entitlementType: memberOf
+            startDate: null
+            ViewName:
+              key: null
+              ref: null
+              props:
+                displayName: Grp_M Desktop Policy DCP0
+                description: Manual group for Users - Desktop Policy Permitted – DCP0
+              _owner: null
+            checked: false
+            businessJustificationInput:
+              type: {}
+              key: businessJustification1397606
+              ref: null
+              props:
+                autoComplete: 'off'
+                type: text
+                defaultValue: ''
+                classes:
+                  root: jss1999
+                  input: jss1999
+                disabled: true
+                disableUnderline: true
+                inputProps:
+                  aria-label: description
+                InputLabelProps:
+                  shrink: true
+                error: false
+                label:
+                  key: null
+                  ref: null
+                  props:
+                    children:
+                      - Business Justification
+                      - false
+                  _owner: null
+              _owner: null
+          - id: 139005
+            name: 'CN=AD BIZ Users,OU=RC Groups,DC=ReynoldsConsumer,DC=com'
+            description: Description pending
+            displayName: AD BIZ Users
+            sysCritical: '0'
+            soxCritical: '0'
+            businessJustificationMandatory: false
+            hasChildEntitlements: false
+            hasChildEntitlementsInSameEntType: false
+            showDates: false
+            relevanceScore: '0'
+            displayNameView:
+              key: null
+              ref: null
+              props:
+                displayName: AD BIZ Users
+                description: Description pending
+              _owner: null
+            requestType: ADD
+            formType: modal
+            ViewName:
+              key: null
+              ref: null
+              props:
+                displayName: AD BIZ Users
+                description: Description pending
+              _owner: null
+            checked: false
+            businessJustificationInput:
+              type: {}
+              key: businessJustification139005
+              ref: null
+              props:
+                autoComplete: 'off'
+                type: text
+                classes:
+                  root: jss1999
+                  input: jss1999
+                disabled: true
+                disableUnderline: true
+                inputProps:
+                  aria-label: description
+                InputLabelProps:
+                  shrink: true
+                error: false
+                label:
+                  key: null
+                  ref: null
+                  props:
+                    children:
+                      - Business Justification
+                      - false
+                  _owner: null
+              _owner: null
+        totalCount: 8877
+        hasRequestableConfig: false
+        requestForm: '3'
+        name: memberOf
+        id: 1
+        isChildOf: []
+        display: true
+    applicationRoles: []
+    dynamicAttributeUpdate: false
+    requestType: MODIFY
+accesstype: APPLICATIONS
+checksod: 'true'

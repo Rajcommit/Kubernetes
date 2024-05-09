@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: coredns-custom
+  namespace: kube-system
+data:
+  azurestack.server: |
+    corp.ads:53 {
+        errors
+        cache 30
+        forward . 142.174.105.165 142.178.136.100 100.125.156.156
+    }
+     vcorp.ads:53 {
+        errors
+        cache 30
+        forward . 142.174.105.165 142.178.136.100 100.125.156.156
+    }
+    telus.com:53 {
+        errors
+        cache 30
+        forward . 142.174.105.165 142.178.136.100 100.125.156.156
+    }

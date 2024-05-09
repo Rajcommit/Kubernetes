@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: coredns-custom
+  namespace: kube-system
+data:
+  azurestack.server: |
+    vmware.com:53 {
+        errors
+        cache 30
+        forward . 10.128.242.1 10.128.242.2 10.113.61.111
+    }
+    vmwtest.com:53 {
+        errors
+        cache 30
+        forward . 10.128.242.1 10.128.242.2 10.113.61.111
+    }

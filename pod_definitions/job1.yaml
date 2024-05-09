@@ -1,0 +1,104 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  annotations:
+    meta.helm.sh/release-name: saviynt
+    meta.helm.sh/release-namespace: default
+  creationTimestamp: "2023-10-12T05:47:40Z"
+  labels:
+    app.kubernetes.io/managed-by: Helm
+  name: request-map-sync-20231012054715
+  namespace: default
+  resourceVersion: "200021308"
+  uid: 3f196248-b34f-4328-9482-0c9e1b77671c
+spec:
+  activeDeadlineSeconds: 3600
+  backoffLimit: 20
+  completions: 1
+  parallelism: 1
+  selector:
+    matchLabels:
+      controller-uid: 3f196248-b34f-4328-9482-0c9e1b77671c
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        controller-uid: 3f196248-b34f-4328-9482-0c9e1b77671c
+        job-name: request-map-sync-20231012054715
+    spec:
+      containers:
+      - command:
+        - /request-map-sync.sh
+        env:
+        - name: JOB_FLAGS
+          value: UPDATE-REQUESTMAP-AUTHTYPE
+        - name: DB_URL
+          value: jdbc:mysql://advisordevmysql2021.mysql.database.azure.com:/saviyntv5
+        - name: DB_USERNAME
+          value: saviyntadmin@advisordevmysql2021
+        - name: MYSQL_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              key: mysql-root-password
+              name: saviynt-mysql
+        image: savtest.azurecr.io/requestmap-sync-job:eic-trunk
+        imagePullPolicy: Always
+        name: request-map-sync
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        volumeMounts:
+        - mountPath: /request-map-sync.sh
+          name: request-map-sync
+          readOnly: true
+          subPath: request-map-sync.sh
+      dnsPolicy: ClusterFirst
+      initContainers:
+      - command:
+        - /db-migration-check.sh
+        env:
+        - name: MYSQL_APP_USER
+          value: saviyntadmin@advisordevmysql2021
+        - name: MYSQL_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              key: mysql-root-password
+              name: saviynt-mysql
+        image: savtest.azurecr.io/db_migration:Release-23.10.1-GA
+        imagePullPolicy: Always
+        name: db-migration-check
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        volumeMounts:
+        - mountPath: /db-migration-check.sh
+          name: request-map-sync
+          readOnly: true
+          subPath: db-migration-check.sh
+        - mountPath: /set_database_url.py
+          name: set-database-url
+          readOnly: true
+          subPath: set_database_url.py
+      restartPolicy: Never
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+      volumes:
+      - configMap:
+          defaultMode: 493
+          name: request-map-sync
+        name: request-map-sync
+      - configMap:
+          defaultMode: 493
+          name: set-database-url
+        name: set-database-url
+status:
+  conditions:
+  - lastProbeTime: "2023-10-12T06:47:59Z"
+    lastTransitionTime: "2023-10-12T06:47:59Z"
+    message: Job was active longer than specified deadline
+    reason: DeadlineExceeded
+    status: "True"
+    type: Failed
+  failed: 3
+  startTime: "2023-10-12T05:47:40Z"

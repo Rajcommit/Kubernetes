@@ -1,0 +1,192 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  annotations:
+    kubectl.kubernetes.io/restartedAt: "2023-09-10T09:34:58-04:00"
+    kubernetes.io/psp: eks.privileged
+  creationTimestamp: "2023-09-10T13:49:48Z"
+  generateName: arsms-847d5c8cc7-
+  labels:
+    pod-template-hash: 847d5c8cc7
+    run: arsms
+  name: arsms-847d5c8cc7-8xptz
+  namespace: prod
+  ownerReferences:
+  - apiVersion: apps/v1
+    blockOwnerDeletion: true
+    controller: true
+    kind: ReplicaSet
+    name: arsms-847d5c8cc7
+    uid: aee3b800-cc51-4fe3-8663-2af7919f77d3
+  resourceVersion: "177368976"
+  uid: 1f6afb1f-10ab-4674-be16-d9e4cf22443e
+spec:
+  affinity:
+    podAntiAffinity:
+      preferredDuringSchedulingIgnoredDuringExecution:
+      - podAffinityTerm:
+          labelSelector:
+            matchExpressions:
+            - key: run
+              operator: In
+              values:
+              - arsms
+          topologyKey: kubernetes.io/hostname
+        weight: 100
+  containers:
+  - env:
+    - name: DD_AGENT_HOST
+      valueFrom:
+        fieldRef:
+          apiVersion: v1
+          fieldPath: status.hostIP
+    - name: DD_SERVICE_NAME
+      value: arsms
+    - name: DD_TRACE_SPAN_TAGS
+      value: env:cec-prod-eks
+    - name: DD_TRACE_AGENT_PORT
+      value: "8126"
+    - name: eureka_instance_hostname
+      value: arsms
+    - name: eureka_client_serviceUrl_defaultZone
+      value: http://registry:8761/eureka/
+    - name: SPRING_PROFILES_ACTIVE
+      value: DEFAULT
+    - name: ELASTIC_APM_SERVICE_NAME
+      value: arsms
+    - name: ELASTIC_APM_SECRET_TOKEN
+      valueFrom:
+        secretKeyRef:
+          key: ELASTIC_APM_SECRET_TOKEN
+          name: secret-sa-observability
+    - name: JAVA_TOOL_OPTIONS
+      value: -javaagent:/opt/apm/agent/elastic-apm-agent.jar
+    image: 854587915883.dkr.ecr.us-east-1.amazonaws.com/arsms:v6.0.0-1315544805-release-2020-1-1-1
+    imagePullPolicy: Always
+    livenessProbe:
+      failureThreshold: 2
+      httpGet:
+        path: /actuator/info
+        port: 8787
+        scheme: HTTP
+      initialDelaySeconds: 400
+      periodSeconds: 10
+      successThreshold: 1
+      timeoutSeconds: 2
+    name: arsms
+    ports:
+    - containerPort: 8787
+      protocol: TCP
+    readinessProbe:
+      failureThreshold: 2
+      httpGet:
+        path: /actuator/info
+        port: 8787
+        scheme: HTTP
+      initialDelaySeconds: 400
+      periodSeconds: 10
+      successThreshold: 4
+      timeoutSeconds: 2
+    resources:
+      limits:
+        cpu: 650m
+        memory: 1024M
+      requests:
+        cpu: 400m
+        memory: 1024M
+    terminationMessagePath: /default/termination-log
+    terminationMessagePolicy: File
+    volumeMounts:
+    - mountPath: /opt/apm/agent
+      name: efs-apm-agent-pvc
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: kube-api-access-d6c4b
+      readOnly: true
+  dnsPolicy: ClusterFirst
+  enableServiceLinks: true
+  imagePullSecrets:
+  - name: us-west-2-ecr-registry
+  nodeName: ip-100-67-8-56.us-west-2.compute.internal
+  preemptionPolicy: PreemptLowerPriority
+  priority: 0
+  restartPolicy: Always
+  schedulerName: default-scheduler
+  securityContext: {}
+  serviceAccount: default
+  serviceAccountName: default
+  terminationGracePeriodSeconds: 30
+  tolerations:
+  - effect: NoExecute
+    key: node.kubernetes.io/not-ready
+    operator: Exists
+    tolerationSeconds: 300
+  - effect: NoExecute
+    key: node.kubernetes.io/unreachable
+    operator: Exists
+    tolerationSeconds: 300
+  topologySpreadConstraints:
+  - labelSelector:
+      matchLabels:
+        run: arsms
+    maxSkew: 1
+    topologyKey: kubernetes.io/hostname
+    whenUnsatisfiable: ScheduleAnyway
+  volumes:
+  - name: efs-apm-agent-pvc
+    persistentVolumeClaim:
+      claimName: efs-apm-agent-pvc
+  - name: kube-api-access-d6c4b
+    projected:
+      defaultMode: 420
+      sources:
+      - serviceAccountToken:
+          expirationSeconds: 3607
+          path: token
+      - configMap:
+          items:
+          - key: ca.crt
+            path: ca.crt
+          name: kube-root-ca.crt
+      - downwardAPI:
+          items:
+          - fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+            path: namespace
+status:
+  conditions:
+  - lastProbeTime: null
+    lastTransitionTime: "2023-09-10T13:49:48Z"
+    status: "True"
+    type: Initialized
+  - lastProbeTime: null
+    lastTransitionTime: "2023-09-10T13:57:13Z"
+    status: "True"
+    type: Ready
+  - lastProbeTime: null
+    lastTransitionTime: "2023-09-10T13:57:13Z"
+    status: "True"
+    type: ContainersReady
+  - lastProbeTime: null
+    lastTransitionTime: "2023-09-10T13:49:48Z"
+    status: "True"
+    type: PodScheduled
+  containerStatuses:
+  - containerID: docker://c0c0b592867e79d95c29e2c18f25e5703ef3508a6027d48233f9d4ae9daeac8c
+    image: 854587915883.dkr.ecr.us-east-1.amazonaws.com/arsms:v6.0.0-1315544805-release-2020-1-1-1
+    imageID: docker-pullable://854587915883.dkr.ecr.us-east-1.amazonaws.com/arsms@sha256:3586ccb76d7a36632c13d933757bfad52d2dcbeedd86e000911a9ecb22a0c0a6
+    lastState: {}
+    name: arsms
+    ready: true
+    restartCount: 0
+    started: true
+    state:
+      running:
+        startedAt: "2023-09-10T13:49:50Z"
+  hostIP: 100.67.8.56
+  phase: Running
+  podIP: 100.67.8.17
+  podIPs:
+  - ip: 100.67.8.17
+  qosClass: Burstable
+  startTime: "2023-09-10T13:49:48Z"
