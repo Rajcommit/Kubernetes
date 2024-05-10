@@ -15,3 +15,5 @@ data:
         cache 30
         forward . 10.128.242.1 10.128.242.2 10.113.61.111
     }
+
+    #basic file structure of DNS
